@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crown Beauty Salon — премиальный салон красоты в Анталье. Маникюр, педикюр, лазерная эпиляция.">
+<title>Crown Beauty Salon 👑 Antalya</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:'Inter',sans-serif;color:#2D2D2D;overflow-x:hidden;background:#fff;line-height:1.65}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.15}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#FFF5F9}
+::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,#F9A8C9,#E91E8C);border-radius:3px}
+section{scroll-margin-top:104px;position:relative}
+/* ── DIAMOND MESH TEXTURE ─────────────────────── */
+section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 26px,
+      rgba(249,168,201,.07) 26px,
+      rgba(249,168,201,.07) 27.5px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 26px,
+      rgba(249,168,201,.07) 26px,
+      rgba(249,168,201,.07) 27.5px
+    )
+}
+/* Tiny rose dot at each diamond intersection */
+section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:radial-gradient(circle,rgba(233,30,140,.06) 1.2px,transparent 1.2px);
+  background-size:37px 37px;
+  background-position:18px 18px
+}
+section>div{position:relative;z-index:1}
+
+/* ── AURORA BACKGROUND ────────────────────────── */
+.aurora{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.aurora-a,.aurora-b,.aurora-c,.aurora-d,.aurora-e{position:absolute;border-radius:50%}
+
+.aurora-a{
+  width:90vw;height:55vw;top:-15%;left:-25%;
+  background:radial-gradient(ellipse at center,rgba(233,30,140,.28) 0%,rgba(233,30,140,.1) 40%,transparent 70%);
+  filter:blur(72px);
+  animation:au-a 20s ease-in-out infinite alternate
+}
+.aurora-b{
+  width:75vw;height:65vw;top:25%;right:-20%;
+  background:radial-gradient(ellipse at center,rgba(160,40,210,.22) 0%,rgba(180,60,220,.08) 45%,transparent 70%);
+  filter:blur(88px);
+  animation:au-b 26s ease-in-out infinite alternate
+}
+.aurora-c{
+  width:100vw;height:45vw;bottom:-10%;left:5%;
+  background:radial-gradient(ellipse at center,rgba(249,168,201,.2) 0%,rgba(249,168,201,.07) 50%,transparent 72%);
+  filter:blur(80px);
+  animation:au-c 23s ease-in-out infinite alternate
+}
+.aurora-d{
+  width:60vw;height:75vw;top:35%;left:25%;
+  background:radial-gradient(ellipse at center,rgba(140,20,180,.18) 0%,transparent 65%);
+  filter:blur(100px);
+  animation:au-d 18s ease-in-out infinite alternate
+}
+.aurora-e{
+  width:55vw;height:40vw;top:10%;left:40%;
+  background:radial-gradient(ellipse at center,rgba(252,180,220,.16) 0%,transparent 68%);
+  filter:blur(64px);
+  animation:au-e 30s ease-in-out infinite alternate
+}
+
+@keyframes au-a{
+  0%  {transform:translate(0,0) rotate(-8deg) scale(1)}
+  100%{transform:translate(18vw,12vh) rotate(18deg) scale(1.25)}
+}
+@keyframes au-b{
+  0%  {transform:translate(0,0) rotate(5deg) scale(1)}
+  100%{transform:translate(-14vw,18vh) rotate(-22deg) scale(1.18)}
+}
+@keyframes au-c{
+  0%  {transform:translate(0,0) rotate(0deg) scale(1)}
+  100%{transform:translate(10vw,-14vh) rotate(14deg) scale(1.12)}
+}
+@keyframes au-d{
+  0%  {transform:translate(0,0) rotate(10deg) scale(1)}
+  100%{transform:translate(-8vw,-10vh) rotate(-18deg) scale(1.3)}
+}
+@keyframes au-e{
+  0%  {transform:translate(0,0) rotate(-5deg) scale(1)}
+  100%{transform:translate(12vw,16vh) rotate(25deg) scale(1.15)}
+}
+
+/* ── KEYFRAMES ────────────────────────────────── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes crownFloat{
+  0%,100%{transform:translateY(0) rotate(-2deg) scale(1);filter:drop-shadow(0 8px 32px rgba(233,30,140,.45)) drop-shadow(0 0 18px rgba(249,168,201,.6))}
+  25%{transform:translateY(-10px) rotate(1.5deg) scale(1.03);filter:drop-shadow(0 16px 48px rgba(233,30,140,.6)) drop-shadow(0 0 32px rgba(249,168,201,.8))}
+  50%{transform:translateY(-18px) rotate(-1deg) scale(1.05);filter:drop-shadow(0 20px 56px rgba(233,30,140,.7)) drop-shadow(0 0 42px rgba(249,168,201,.9)) drop-shadow(0 0 8px rgba(255,255,255,.8))}
+  75%{transform:translateY(-8px) rotate(2deg) scale(1.02);filter:drop-shadow(0 14px 44px rgba(233,30,140,.55)) drop-shadow(0 0 28px rgba(249,168,201,.75))}
+}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(233,30,140,.45)}50%{box-shadow:0 0 0 18px rgba(233,30,140,0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes scrollDrop{0%{opacity:0;transform:scaleY(0);transform-origin:top}60%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:top}}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+
+/* ── REVEAL SYSTEM ────────────────────────────── */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-s{opacity:0;transform:scale(.88);transition:opacity .7s ease,transform .7s ease}
+.rv-s.in{opacity:1;transform:scale(1)}
+.rv-l{opacity:0;transform:translateX(-44px);transition:opacity .75s ease,transform .75s ease}
+.rv-l.in{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(44px);transition:opacity .75s ease,transform .75s ease}
+.rv-r.in{opacity:1;transform:translateX(0)}
+
+/* ── GRAD / GLASS UTILS ───────────────────────── */
+.gtext{background:linear-gradient(135deg,#E91E8C,#F9A8C9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gbg{background:linear-gradient(135deg,#E91E8C,#c4106e)}
+.gbg-anim{background:linear-gradient(270deg,#E91E8C,#F9A8C9,#FCE4EC,#E91E8C);background-size:400% 400%;animation:gradShift 7s ease infinite}
+
+/* ── TOP BAR ──────────────────────────────────── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1002;height:36px;background:#E5177E;display:flex;align-items:center;padding:0 20px;gap:0;font-size:13px;color:#fff}
+.topbar-left{display:flex;align-items:center;gap:0;flex:1;overflow:hidden;min-width:0}
+.topbar-item{display:flex;align-items:center;gap:5px;white-space:nowrap;color:rgba(255,255,255,.93);text-decoration:none;transition:opacity .2s;flex-shrink:0}
+.topbar-item:hover{opacity:.72}
+.topbar-sep{color:rgba(255,255,255,.28);margin:0 10px;flex-shrink:0}
+.topbar-pipe{color:rgba(255,255,255,.25);margin:0 14px;flex-shrink:0}
+.topbar-open{background:rgba(255,255,255,.2);padding:2px 9px;border-radius:10px;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.topbar-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 5px rgba(74,222,128,.7)}
+.topbar-right{display:flex;align-items:center;flex-shrink:0}
+.lang-group{display:flex;align-items:center;gap:0;background:#fff;border-radius:50px;padding:3px 4px;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.lang-pill{padding:3px 10px;border-radius:50px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;font-size:12px;transition:all 0.25s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;gap:3px;line-height:1;background:transparent;color:#888}
+.lang-pill.active{background:#E5177E;color:#fff;font-weight:700;box-shadow:0 0 10px rgba(229,23,126,.4)}
+.lang-pill.inactive{background:transparent;color:#555}
+.lang-pill.inactive:hover{background:rgba(229,23,126,.1);color:#E5177E;transform:scale(1.12);box-shadow:0 0 8px rgba(229,23,126,.25)}
+
+/* ── NAV GLASS ────────────────────────────────── */
+.nav-glass{position:fixed;top:36px;left:0;right:0;z-index:1000;height:68px;
+  backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(255,255,255,.75);
+  border-bottom:1px solid rgba(244,167,192,.3);
+  box-shadow:0 4px 24px rgba(229,23,126,.08);
+  transition:background .4s,box-shadow .4s,border-color .4s,backdrop-filter .4s}
+.nav-glass.scrolled{
+  backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);
+  background:rgba(255,255,255,.88);
+  box-shadow:0 8px 40px rgba(229,23,126,.13),0 1px 0 rgba(255,255,255,.6);
+  border-bottom:1px solid rgba(244,167,192,.45)}
+.nav-glass-shine{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.95) 20%,rgba(255,255,255,.95) 80%,transparent 100%);pointer-events:none;z-index:2}
+.nav-glass-progress{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,#E5177E,#F9A8C9,#c4106e);background-size:200% 100%;animation:gradShift 3s ease infinite;transition:width .12s linear;border-radius:0 2px 2px 0;pointer-events:none;z-index:3}
+.nav-glass-inner{position:relative;z-index:1;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+
+/* Nav links — liquid glass pill style */
+.nav-link{
+  position:relative;text-decoration:none;color:#3a1a26;font-size:.84rem;font-weight:500;
+  letter-spacing:.03em;padding:6px 18px;border-radius:50px;
+  border:1.5px solid transparent;
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
+}
+.nav-link:hover{
+  color:#E5177E;
+  background:rgba(229,23,126,.08);
+  border-color:rgba(229,23,126,.2)
+}
+.nav-link.act{
+  color:#E5177E;
+  font-weight:600;
+  background:rgba(229,23,126,.12);
+  border:1.5px solid rgba(229,23,126,.35);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-radius:50px;
+  box-shadow:0 2px 12px rgba(229,23,126,.12)
+}
+
+/* Записаться button — liquid glass */
+.nav-cta{
+  text-decoration:none;
+  padding:10px 24px;
+  border-radius:50px;
+  background:rgba(255,255,255,.45);
+  border:1.5px solid rgba(255,255,255,.8);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 2px 16px rgba(229,23,126,.15),inset 0 1px 0 rgba(255,255,255,.7);
+  color:#E5177E;
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  font-size:.82rem;
+  letter-spacing:.03em;
+  transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+  white-space:nowrap;
+  display:inline-flex;align-items:center
+}
+.nav-cta:hover{
+  background:#E5177E;
+  border-color:#E5177E;
+  color:#fff;
+  box-shadow:0 0 20px rgba(229,23,126,.35);
+  transform:scale(1.08)
+}
+
+/* WA circle button in nav */
+.nav-wa-btn{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1.5px solid rgba(37,211,102,.45);
+  background:rgba(37,211,102,.08);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:all 0.3s cubic-bezier(0.4,0,0.2,1);color:#25D366;text-decoration:none;
+  box-shadow:0 2px 10px rgba(37,211,102,.15)
+}
+.nav-wa-btn:hover{
+  background:rgba(37,211,102,.18);
+  border-color:rgba(37,211,102,.65);
+  transform:scale(1.08);
+  box-shadow:0 4px 18px rgba(37,211,102,.3)
+}
+
+/* ── SERVICE CARDS ────────────────────────────── */
+.scard{
+  transition:transform .38s cubic-bezier(.23,1,.32,1),box-shadow .38s ease,border-color .38s ease;
+  cursor:pointer;position:relative
+}
+.scard:hover{
+  transform:translateY(-11px) scale(1.012);
+  border-color:rgba(233,30,140,.55)!important;
+  box-shadow:
+    0 0 0 1px rgba(233,30,140,.35),
+    0 0 10px  rgba(233,30,140,.45),
+    0 0 30px  rgba(233,30,140,.28),
+    0 0 70px  rgba(233,30,140,.14),
+    0 0 120px rgba(233,30,140,.07),
+    0 22px 52px rgba(233,30,140,.2)!important
+}
+/* top accent bar */
+.scard-bar{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,rgba(233,30,140,.2) 30%,rgba(249,168,201,.5) 50%,rgba(233,30,140,.2) 70%,transparent);
+  border-radius:24px 24px 0 0;
+  transition:background .38s ease,box-shadow .38s ease
+}
+.scard:hover .scard-bar{
+  background:linear-gradient(90deg,transparent,#E91E8C 30%,#F9A8C9 50%,#E91E8C 70%,transparent);
+  box-shadow:0 0 10px rgba(233,30,140,.6),0 0 28px rgba(233,30,140,.35)
+}
+/* icon */
+.scard-icon{
+  display:inline-block;font-size:2.4rem;line-height:1;
+  transition:filter .38s ease,transform .38s ease
+}
+.scard:hover .scard-icon{}
+/* shimmer sweep */
+.scard .shimmer-line{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none}
+.scard .shimmer-line::after{content:'';position:absolute;top:0;left:0;width:35%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%)}
+.scard:hover .shimmer-line::after{animation:shimmer .65s ease}
+/* price badge pulse on hover */
+.scard:hover .scard-price{
+  box-shadow:0 0 8px rgba(233,30,140,.55),0 0 20px rgba(233,30,140,.3)
+}
+
+/* ── GALLERY ──────────────────────────────────── */
+.gcrd{border-radius:18px;overflow:hidden;cursor:pointer;position:relative}
+.gcrd-inner{transition:transform .55s cubic-bezier(.23,1,.32,1);width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.gcrd:hover .gcrd-inner{transform:scale(1.09)}
+.gcrd-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(233,30,140,.8) 0%,rgba(233,30,140,.25) 55%,transparent 100%);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:18px;gap:6px}
+.gcrd:hover .gcrd-ov{opacity:1}
+.look-btn{background:rgba(255,255,255,.22);border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:20px;transform:translateY(10px);transition:transform .35s ease .05s}
+.gcrd:hover .look-btn{transform:translateY(0)}
+
+/* ── FILTER TABS ──────────────────────────────── */
+.ftab{padding:8px 20px;border-radius:24px;border:1.5px solid rgba(249,168,201,.45);background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;color:#888;transition:all .22s;white-space:nowrap}
+.ftab.on{background:linear-gradient(135deg,#E91E8C,#c4106e);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(233,30,140,.3)}
+.ftab:not(.on):hover{border-color:#E91E8C;color:#E91E8C}
+
+/* ── SCROLL TO TOP ────────────────────────────── */
+.stt-btn{
+  position:fixed;bottom:28px;left:28px;z-index:9998;
+  width:54px;height:54px;
+  border:none;cursor:pointer;background:transparent;padding:0;
+  transition:opacity .42s ease,transform .42s cubic-bezier(.23,1,.32,1)
+}
+.stt-inner{
+  position:absolute;inset:6px;border-radius:50%;
+  background:linear-gradient(135deg,#E91E8C,#c4106e);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(233,30,140,.45),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .26s ease,box-shadow .26s ease
+}
+.stt-btn:hover .stt-inner{
+  transform:scale(1.1) translateY(-2px);
+  box-shadow:
+    0 0 8px  rgba(233,30,140,.65),
+    0 0 22px rgba(233,30,140,.38),
+    0 0 50px rgba(233,30,140,.18),
+    0 8px 28px rgba(233,30,140,.4),
+    inset 0 1px 0 rgba(255,255,255,.45)
+}
+.stt-arrow{transition:transform .26s ease}
+.stt-btn:hover .stt-arrow{transform:translateY(-2px)}
+
+@keyframes stt-pulse{
+  0%  {transform:scale(1);opacity:.55}
+  70% {transform:scale(1.55);opacity:0}
+  100%{transform:scale(1.55);opacity:0}
+}
+.stt-ring{
+  position:absolute;inset:6px;border-radius:50%;
+  border:2px solid rgba(233,30,140,.55);
+  animation:stt-pulse 2.2s ease-out infinite;
+  pointer-events:none
+}
+
+/* ── FLOAT BTNS (LIQUID GLASS) ────────────────── */
+.fb-wrap{position:fixed;bottom:28px;right:28px;z-index:9997;display:flex;gap:12px;align-items:center}
+.fb{display:flex;align-items:center;justify-content:center;gap:8px;height:54px;border-radius:30px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;transition:transform .28s ease,box-shadow .28s ease;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);white-space:nowrap}
+.fb:hover{transform:translateY(-4px) scale(1.04)}
+.fb-wa{padding:0 22px;background:rgba(37,211,102,.18);border:1.5px solid rgba(37,211,102,.5);color:#fff;box-shadow:0 8px 32px rgba(37,211,102,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.fb-wa:hover{box-shadow:0 16px 40px rgba(37,211,102,.45),inset 0 1px 0 rgba(255,255,255,.3)}
+.fb-book{padding:0 22px;background:rgba(233,30,140,.18);border:1.5px solid rgba(233,30,140,.5);color:#fff;box-shadow:0 8px 32px rgba(233,30,140,.32),inset 0 1px 0 rgba(255,255,255,.25)}
+.fb-book:hover{box-shadow:0 16px 40px rgba(233,30,140,.45),inset 0 1px 0 rgba(255,255,255,.3)}
+
+/* ── MARQUEE ──────────────────────────────────── */
+.mq-wrap{overflow:hidden;width:100%}
+.mq-inner{display:inline-flex;animation:marquee 28s linear infinite;white-space:nowrap}
+.mq-inner:hover{animation-play-state:paused}
+
+/* ── CURSOR ───────────────────────────────────── */
+.cursor{display:inline-block;width:3px;height:.9em;background:#E91E8C;margin-left:3px;vertical-align:middle;border-radius:2px;animation:blink 1s step-end infinite}
+
+/* ── TEAM CARD ────────────────────────────────── */
+.team-card{transition:transform .3s,box-shadow .3s}
+.team-card:hover{transform:translateY(-8px);box-shadow:0 20px 44px rgba(233,30,140,.15)!important}
+
+/* ── REVIEWS CAROUSEL ─────────────────────────── */
+
+/* Gradient-border wrapper — the "frame" */
+.rvcard-wrap{
+  position:relative;
+  border-radius:26px;
+  padding:1.5px;
+  background:linear-gradient(135deg,
+    rgba(233,30,140,.28) 0%,
+    rgba(160,40,210,.2)  40%,
+    rgba(249,168,201,.32) 100%
+  );
+  flex-shrink:0
+}
+
+/* Glass panel inside */
+.rvcard{
+  border-radius:25px;
+  padding:28px 24px;
+  height:100%;
+  background:rgba(255,244,250,.84);
+  backdrop-filter:blur(24px) saturate(1.6);
+  -webkit-backdrop-filter:blur(24px) saturate(1.6)
+}
+
+/* Avatar */
+.rvcard-av{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,#F9A8C9,#E91E8C);
+  display:flex;align-items:center;justify-content:center;
+  color:white;fontWeight:700;font-size:1.05rem;
+  font-family:'Playfair Display',serif;flex-shrink:0
+}
+
+/* Stars */
+.rvcard-stars{
+  color:#E91E8C;font-size:.93rem;letter-spacing:2px
+}
+
+/* Arrow buttons */
+.rv-arr{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid rgba(233,30,140,.35);
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  cursor:pointer;font-size:1.5rem;line-height:1;color:#E91E8C;
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;transition:all .26s;
+  box-shadow:0 4px 16px rgba(233,30,140,.14)
+}
+.rv-arr:hover{
+  background:linear-gradient(135deg,#E91E8C,#c4106e);
+  color:#fff;border-color:transparent;
+  box-shadow:0 0 10px rgba(233,30,140,.5),0 8px 24px rgba(233,30,140,.3)
+}
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media(max-width:900px){
+  .dknav{display:none!important}
+  .mobbtn{display:flex!important}
+  .topbar-r{display:none!important}
+  .srv-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+@media(max-width:600px){
+  html{font-size:15px}
+  .ll{display:none!important}
+  .srv-grid{grid-template-columns:1fr!important}
+  .hero-btns{flex-direction:column;align-items:center}
+  .stats-row{grid-template-columns:1fr 1fr!important}
+  .team-grid{grid-template-columns:1fr!important}
+  .feat-grid{grid-template-columns:1fr 1fr!important}
+  .fb-wrap{bottom:18px;right:14px;gap:8px}
+  .fb{height:46px;padding:0 14px;font-size:.75rem}
+  /* Hide top bar on mobile, navbar sits at very top */
+  .topbar{display:none!important}
+  .nav-glass{top:0!important;height:60px!important}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef,useContext,createContext,useCallback,useMemo}=React;
+
+/* ═══════════════════════════════════════════════
+   REAL UNSPLASH GALLERY PHOTOS
+   (confirmed IDs from unsplash.com/s/photos/nail-salon)
+═══════════════════════════════════════════════ */
+const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=82`;
+const GPHOTOS=[
+  U('photo-1604654894610-df63bc536371'), // 0 pink gel manicure
+  U('photo-1632345031435-8727f6897d53'), // 1 nail art close-up
+  U('photo-1610992015762-45dca7fa3a85'), // 2 nail salon service
+  U('photo-1519415510236-718bdfcd89c8'), // 3 pedicure feet
+  U('photo-1610992015836-7c249d75782d'), // 4 spa pedicure
+  U('photo-1619607146034-5a05296c8f9a'), // 5 nail design
+  U('photo-1652869122685-c7792ef56ee2'), // 6 nail art dark
+  U('photo-1599206676335-193c82b13c9e'), // 7 french nails
+  U('photo-1607779097040-26e80aa78e66'), // 8 nail art pastel
+];
+const HERO_BG=U('photo-1522337360788-8b13dee7a37e'); // beauty salon interior
+
+/* ═══════════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════════ */
+const T={
+  ru:{
+    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Открыто сейчас'},
+    nav:{home:'Главная',services:'Услуги',reviews:'Отзывы',gallery:'Галерея',about:'О нас',contact:'Контакты'},
+    hero:{
+      line1:'Ваша красота —',line2:'наша корона',
+      sub:'Премиальный салон красоты в сердце Антальи',
+      cta:'Записаться',cta2:'Наши услуги',rating:'230 отзывов',badge:'Женский бизнес'
+    },
+    marquee:'💅 Маникюр · 🦶 Педикюр · ✨ Красота · 👑 Стиль · 💎 Наращивание · 🌸 Уход за лицом · 👁 Брови и ресницы · 🔥 Лазерная эпиляция · ',
+    services:{
+      title:'Наши услуги',sub:'Профессиональный уход с любовью',
+      items:[
+        {icon:'💅',name:'Маникюр',desc:'Классический, аппаратный, гель-лак и художественный дизайн',price:'от 800₺',dur:'45–90 мин'},
+        {icon:'🦶',name:'Педикюр',desc:'SPA-педикюр, аппаратный, наращивание ногтей на ногах',price:'от 600₺',dur:'60–90 мин'},
+        {icon:'💎',name:'Наращивание ногтей',desc:'Акрил, гель, полигель — любая форма и длина',price:'от 1200₺',dur:'2–3 часа'},
+        {icon:'✨',name:'Лазерная эпиляция',desc:'Безболезненное удаление волос навсегда — все зоны',price:'от 500₺/зона',dur:'15–60 мин'},
+        {icon:'👁',name:'Брови и ресницы',desc:'Ламинирование, коррекция, окрашивание, наращивание',price:'от 400₺',dur:'30–90 мин'},
+        {icon:'🌸',name:'Уход за лицом',desc:'Чистки, пилинги, увлажняющие и омолаживающие маски',price:'от 700₺',dur:'60–90 мин'},
+      ]
+    },
+    reviews:{
+      title:'Отзывы клиентов',sub:'Что говорят наши гости',
+      items:[
+        {name:'Anastasiia Gedik',time:'7 месяцев назад',text:'Пользуюсь услугами этого салона с 2022 года, именно здесь я нашла «своего» мастера маникюра Машу, она очень деликатно и качественно заботится о моих руках, а так же профессионально делает педикюр'},
+        {name:'Esenia Kireeva',time:'7 месяцев назад',text:'Хожу в этот салон уже несколько лет и ни разу не пожалела о своём выборе! Делала лазерное удаление волос и наращивание ногтей — результат всегда безупречный. Персонал очень внимательный'},
+        {name:'Lidia Leona',time:'2 месяца назад',text:'Долго выбирала салон с хорошим лазером, сделала уже 3 сеанса и после 2-го почувствовала что волос стало меньше! Очень комфортно и быстро'},
+        {name:'Melissa S',time:'6 месяцев назад',text:'Уже полгода хожу на лазерную эпиляцию, и каждый визит — как поход не просто в салон, а в уютное доброе место, где тебя всегда ждут'},
+        {name:'Мила Мирт',time:'5 месяцев назад',text:'Обожаю этот салон! Делала маникюр, педикюр и лазер — всё выполнено идеально. Мастера невероятно внимательные, атмосфера уютная, играет приятная музыка'},
+        {name:'Viktorya Lessing',time:'год назад',text:'Лучший салон с лучшими мастерами. Приехали по рекомендации с другого конца Анталии. Здесь прекрасно всё: мастера, дизайн салона, всё новое чистое и аккуратное'},
+        {name:'Gulnara Badalova',time:'5 месяцев назад',text:'Наконец-то в Анталии нашла отличный салон. Действительно профессионалы своего дела. Комфортно, светло и чисто. Получила качественное обслуживание и консультацию по уходу за лицом'},
+        {name:'Татьяна Гоголева',time:'7 месяцев назад',text:'Хожу только в этот салон. Маникюр делают обалденно. Мастера профессионалы. Спасибо большое Маше за идеальный маникюр'},
+        {name:'Антонина Машталир',time:'год назад',text:'Нашла салон через соц.сети, ходила на массаж и лазер. Вежливый персонал, всегда в хорошем настроении, чай, кофе, хорошая атмосфера'},
+      ]
+    },
+    gallery:{
+      title:'Галерея работ',sub:'Наше портфолио',
+      tabs:{all:'Все',manicure:'Маникюр',pedicure:'Педикюр',laser:'Эпиляция'},
+      look:'Смотреть',
+      items:[
+        {cat:'manicure',label:'Гель-лак',h:240,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
+        {cat:'manicure',label:'Nail Art',h:180,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
+        {cat:'manicure',label:'Наращивание',h:260,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
+        {cat:'pedicure',label:'SPA-педикюр',h:200,g:'linear-gradient(135deg,#FFF0F8 0%,#F9A8C9 100%)'},
+        {cat:'pedicure',label:'Педикюр',h:230,g:'linear-gradient(135deg,#FCE4EC 0%,#E91E8C 100%)'},
+        {cat:'laser',label:'Лазер',h:190,g:'linear-gradient(135deg,#c4106e 0%,#E91E8C 100%)'},
+        {cat:'laser',label:'Эпиляция',h:250,g:'linear-gradient(135deg,#E91E8C 0%,#F9A8C9 100%)'},
+        {cat:'manicure',label:'Французский',h:210,g:'linear-gradient(135deg,#F9A8C9 0%,#FCE4EC 100%)'},
+        {cat:'pedicure',label:'Омбре',h:170,g:'linear-gradient(135deg,#9b0e63 0%,#F9A8C9 100%)'},
+      ]
+    },
+    about:{
+      title:'О салоне',sub:'История Crown Beauty',badge:'Женский бизнес',
+      p1:'Crown Beauty Salon — место, где каждая клиентка чувствует себя королевой. Мы предлагаем услуги высочайшего уровня в уютной атмосфере.',
+      p2:'Наш мастер Маша — сертифицированный специалист с 5+ годами опыта. Она создаёт неповторимые образы и следит за каждой деталью.',
+      stats:[
+        {val:5,suf:'+',label:'Лет опыта',icon:'🏆'},
+        {val:2000,suf:'+',label:'Клиентов',icon:'👸'},
+        {val:4.6,suf:'⭐',label:'Рейтинг Google',icon:'⭐',dec:1},
+      ],
+      team:[
+        {name:'Маша',spec:'Мастер ногтевого сервиса',icon:'💅',exp:'5+ лет'},
+        {name:'Айгуль',spec:'Специалист по бровям',icon:'👁',exp:'3+ года'},
+        {name:'Лейла',spec:'Мастер лазерной эпиляции',icon:'✨',exp:'4+ года'},
+      ],
+      features:[
+        {icon:'🏆',title:'5+ лет опыта',desc:'Многолетний профессионализм'},
+        {icon:'💎',title:'Премиум материалы',desc:'Только сертифицированные бренды'},
+        {icon:'♀️',title:'Женский бизнес',desc:'Созданный женщинами для женщин'},
+        {icon:'❤️',title:'Забота о клиенте',desc:'Индивидуальный подход к каждой'},
+      ],
+      master:'Мастер Маша',masterSub:'Основатель & Ведущий специалист'
+    },
+    contact:{
+      title:'Контакты',sub:'Мы ждём вас',addr:'Адрес',hours:'Режим работы',
+      hoursVal:'09:00 — 20:00',phone:'Телефон',web:'Сайт',
+      busy:'Пятница — самый загруженный день',wa:'Записаться в WhatsApp',call:'Позвонить'
+    },
+    footer:{tag:'Ваша красота — наша корона',rights:'Все права защищены'}
+  },
+
+  tr:{
+    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Şu an açık'},
+    nav:{home:'Ana Sayfa',services:'Hizmetler',reviews:'Yorumlar',gallery:'Galeri',about:'Hakkımızda',contact:'İletişim'},
+    hero:{
+      line1:'Güzelliğiniz —',line2:'Bizim Tacımız',
+      sub:"Antalya'nın kalbinde premium güzellik salonu",
+      cta:'Randevu Al',cta2:'Hizmetlerimiz',rating:'230 yorum',badge:'Kadın İşletmesi'
+    },
+    marquee:'💅 Manikür · 🦶 Pedikür · ✨ Güzellik · 👑 Stil · 💎 Tırnak Uzatma · 🌸 Yüz Bakımı · 👁 Kaş ve Kirpik · 🔥 Lazer Epilasyon · ',
+    services:{
+      title:'Hizmetlerimiz',sub:'Sevgiyle profesyonel bakım',
+      items:[
+        {icon:'💅',name:'Manikür',desc:'Klasik, jel, nail art ve uzatma hizmetleri',price:'800₺\'den',dur:'45–90 dk'},
+        {icon:'🦶',name:'Pedikür',desc:'SPA pedikür, aletli pedikür, tırnak uzatma',price:'600₺\'den',dur:'60–90 dk'},
+        {icon:'💎',name:'Tırnak Uzatma',desc:'Akrilik, jel, polijel — her şekil ve uzunluk',price:'1200₺\'den',dur:'2–3 saat'},
+        {icon:'✨',name:'Lazer Epilasyon',desc:'Kalıcı ağrısız tüy alma — tüm bölgeler',price:'500₺/bölgeden',dur:'15–60 dk'},
+        {icon:'👁',name:'Kaş ve Kirpik',desc:'Laminasyon, düzeltme, boyama, uzatma',price:'400₺\'den',dur:'30–90 dk'},
+        {icon:'🌸',name:'Yüz Bakımı',desc:'Temizleme, peeling, nemlendirici maskeler',price:'700₺\'den',dur:'60–90 dk'},
+      ]
+    },
+    marquee2:'💅 Manikür · 🦶 Pedikür · ✨ Güzellik · 👑 Stil · ',
+    reviews:{
+      title:'Müşteri Yorumları',sub:'Misafirlerimiz ne diyor',
+      items:[
+        {name:'Anastasiia Gedik',time:'7 ay önce',text:"Bu salonu 2022'den beri kullanıyorum — burada 'kendi' manikür ustam Maşa'yı buldum, ellerimi çok nazik ve kaliteli bakıyor, ayrıca profesyonelce pedikür yapıyor"},
+        {name:'Esenia Kireeva',time:'7 ay önce',text:'Bu salona yıllardır gidiyorum ve tercihimden hiç pişman olmadım! Lazer epilasyon ve tırnak uzatma yaptırdım — sonuç her zaman mükemmel. Personel çok ilgili'},
+        {name:'Lidia Leona',time:'2 ay önce',text:'İyi lazerli bir salon aradım uzun süre, 3 seans yaptırdım ve 2. seanstan sonra tüylerin azaldığını hissettim! Çok rahat ve hızlı'},
+        {name:'Melissa S',time:'6 ay önce',text:"Altı aydır lazer epilasyona gidiyorum ve her ziyaret sadece bir salon değil, sizi her zaman bekleyen sıcak, samimi bir yere gitmek gibi"},
+        {name:'Мила Мирт',time:'5 ay önce',text:'Bu salonu çok seviyorum! Manikür, pedikür ve lazer yaptırdım — hepsi mükemmel. Ustalar inanılmaz dikkatli, atmosfer sıcak, güzel müzik çalıyor'},
+        {name:'Viktorya Lessing',time:'1 yıl önce',text:"En iyi ustalarla en iyi salon. Antalya'nın öbür ucundan tavsiye üzerine geldik. Burada her şey harika: ustalar, salon tasarımı, yeni, temiz ve düzenli"},
+        {name:'Gulnara Badalova',time:'5 ay önce',text:"Sonunda Antalya'da harika bir salon buldum. Gerçekten işinin uzmanları. Rahat, aydınlık ve temiz. Kaliteli hizmet ve cilt bakımı konusunda danışmanlık aldım"},
+        {name:'Татьяна Гоголева',time:'7 ay önce',text:"Sadece bu salona gidiyorum. Manikürü muhteşem yapıyorlar. Ustalar profesyonel. Mükemmel manikür için Maşa'ya çok teşekkürler"},
+        {name:'Антонина Машталир',time:'1 yıl önce',text:'Salonu sosyal medyadan buldum, masaj ve lazer için gittim. Kibarca personel, her zaman iyi ruh halinde, çay, kahve, güzel atmosfer'},
+      ]
+    },
+    gallery:{
+      title:'Çalışma Galerisi',sub:'Portföyümüz',
+      tabs:{all:'Tümü',manicure:'Manikür',pedicure:'Pedikür',laser:'Epilasyon'},
+      look:'Görüntüle',
+      items:[
+        {cat:'manicure',label:'Jel Oje',h:240,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
+        {cat:'manicure',label:'Nail Art',h:180,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
+        {cat:'manicure',label:'Uzatma',h:260,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
+        {cat:'pedicure',label:'SPA Pedikür',h:200,g:'linear-gradient(135deg,#FFF0F8 0%,#F9A8C9 100%)'},
+        {cat:'pedicure',label:'Pedikür',h:230,g:'linear-gradient(135deg,#FCE4EC 0%,#E91E8C 100%)'},
+        {cat:'laser',label:'Lazer',h:190,g:'linear-gradient(135deg,#c4106e 0%,#E91E8C 100%)'},
+        {cat:'laser',label:'Epilasyon',h:250,g:'linear-gradient(135deg,#E91E8C 0%,#F9A8C9 100%)'},
+        {cat:'manicure',label:'Fransız',h:210,g:'linear-gradient(135deg,#F9A8C9 0%,#FCE4EC 100%)'},
+        {cat:'pedicure',label:'Ombre',h:170,g:'linear-gradient(135deg,#9b0e63 0%,#F9A8C9 100%)'},
+      ]
+    },
+    about:{
+      title:'Salon Hakkında',sub:'Crown Beauty Hikayesi',badge:'Kadın İşletmesi',
+      p1:"Crown Beauty Salon, her müşterimizin kendini bir kraliçe gibi hissettiği yerdir. Konyaaltı, Antalya'da en yüksek kalitede hizmet.",
+      p2:"Ustamız Maşa, 5+ yıllık deneyime sahip sertifikalı bir uzmandır. Her detayle ilgilenir ve eşsiz görünümler yaratır.",
+      stats:[
+        {val:5,suf:'+',label:'Yıllık Deneyim',icon:'🏆'},
+        {val:2000,suf:'+',label:'Müşteri',icon:'👸'},
+        {val:4.6,suf:'⭐',label:'Google Puanı',icon:'⭐',dec:1},
+      ],
+      team:[
+        {name:'Maşa',spec:'Tırnak Uzmanı',icon:'💅',exp:'5+ yıl'},
+        {name:'Aygül',spec:'Kaş ve Kirpik Uzmanı',icon:'👁',exp:'3+ yıl'},
+        {name:'Leyla',spec:'Lazer Uzmanı',icon:'✨',exp:'4+ yıl'},
+      ],
+      features:[
+        {icon:'🏆',title:'5+ Yıl Deneyim',desc:'Uzun yıllara dayanan uzmanlık'},
+        {icon:'💎',title:'Premium Malzeme',desc:'Sadece sertifikalı markalar'},
+        {icon:'♀️',title:'Kadın İşletmesi',desc:'Kadınlar tarafından kadınlar için'},
+        {icon:'❤️',title:'Müşteri Odaklı',desc:'Her müşteriye özel yaklaşım'},
+      ],
+      master:'Usta Maşa',masterSub:'Kurucu & Baş Uzman'
+    },
+    contact:{
+      title:'İletişim',sub:'Sizi bekliyoruz',addr:'Adres',hours:'Çalışma Saatleri',
+      hoursVal:'09:00 — 20:00',phone:'Telefon',web:'Web Sitesi',
+      busy:'Cuma — en yoğun gün',wa:"WhatsApp'tan Randevu",call:'Hemen Ara'
+    },
+    footer:{tag:'Güzelliğiniz — Bizim Tacımız',rights:'Tüm hakları saklıdır'}
+  },
+
+  en:{
+    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Open now'},
+    nav:{home:'Home',services:'Services',reviews:'Reviews',gallery:'Gallery',about:'About',contact:'Contact'},
+    hero:{
+      line1:'Your Beauty —',line2:'Our Crown',
+      sub:'Premium beauty salon in the heart of Antalya',
+      cta:'Book Now',cta2:'Our Services',rating:'230 reviews',badge:'Woman-Owned'
+    },
+    marquee:'💅 Manicure · 🦶 Pedicure · ✨ Beauty · 👑 Style · 💎 Nail Extensions · 🌸 Facial Care · 👁 Brows & Lashes · 🔥 Laser Removal · ',
+    services:{
+      title:'Our Services',sub:'Professional care with love',
+      items:[
+        {icon:'💅',name:'Manicure',desc:'Classic, gel, nail art and extension services',price:'from ₺800',dur:'45–90 min'},
+        {icon:'🦶',name:'Pedicure',desc:'SPA pedicure, machine pedicure, toe extensions',price:'from ₺600',dur:'60–90 min'},
+        {icon:'💎',name:'Nail Extensions',desc:'Acrylic, gel, polygel — any shape and length',price:'from ₺1200',dur:'2–3 hours'},
+        {icon:'✨',name:'Laser Hair Removal',desc:'Permanent painless hair removal — all zones',price:'from ₺500/zone',dur:'15–60 min'},
+        {icon:'👁',name:'Brows & Lashes',desc:'Lamination, correction, tinting, extensions',price:'from ₺400',dur:'30–90 min'},
+        {icon:'🌸',name:'Facial Care',desc:'Cleansing, peeling, hydrating & rejuvenating masks',price:'from ₺700',dur:'60–90 min'},
+      ]
+    },
+    reviews:{
+      title:'Client Reviews',sub:'What our guests say',
+      items:[
+        {name:'Anastasiia Gedik',time:'7 months ago',text:"I've been using this salon since 2022 — this is where I found 'my' manicure master Masha, she takes care of my hands very gently and with great quality, and also does professional pedicure"},
+        {name:'Esenia Kireeva',time:'7 months ago',text:"I've been going to this salon for several years and never regretted my choice! I did laser hair removal and nail extensions — the result is always impeccable. Staff is very attentive"},
+        {name:'Lidia Leona',time:'2 months ago',text:'I was searching for a salon with a good laser for a long time, had 3 sessions and after the 2nd felt the hair was less! Very comfortable and quick'},
+        {name:'Melissa S',time:'6 months ago',text:"I've been going for laser hair removal for six months, and every visit feels not just like a salon trip, but a visit to a cozy, welcoming place where you are always expected"},
+        {name:'Мила Мирт',time:'5 months ago',text:'I love this salon! I had manicure, pedicure, and laser — everything done perfectly. Masters are incredibly attentive, the atmosphere is cozy, nice music playing'},
+        {name:'Viktorya Lessing',time:'1 year ago',text:'Best salon with the best masters. We came on recommendation from across Antalya. Everything here is wonderful: masters, salon design, everything new, clean, and tidy'},
+        {name:'Gulnara Badalova',time:'5 months ago',text:'Finally found an excellent salon in Antalya. Truly professionals. Comfortable, bright, and clean. Received quality service and a consultation on facial care'},
+        {name:'Татьяна Гоголева',time:'7 months ago',text:'I only go to this salon. The manicure is done amazingly. Masters are professionals. Thank you so much Masha for the perfect manicure'},
+        {name:'Антонина Машталир',time:'1 year ago',text:'Found the salon through social media, went for massage and laser. Polite staff, always in a good mood, tea, coffee, wonderful atmosphere'},
+      ]
+    },
+    gallery:{
+      title:'Work Gallery',sub:'Our Portfolio',
+      tabs:{all:'All',manicure:'Manicure',pedicure:'Pedicure',laser:'Laser'},
+      look:'View',
+      items:[
+        {cat:'manicure',label:'Gel Polish',h:240,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
+        {cat:'manicure',label:'Nail Art',h:180,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
+        {cat:'manicure',label:'Extensions',h:260,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
+        {cat:'pedicure',label:'SPA Pedicure',h:200,g:'linear-gradient(135deg,#FFF0F8 0%,#F9A8C9 100%)'},
+        {cat:'pedicure',label:'Pedicure',h:230,g:'linear-gradient(135deg,#FCE4EC 0%,#E91E8C 100%)'},
+        {cat:'laser',label:'Laser',h:190,g:'linear-gradient(135deg,#c4106e 0%,#E91E8C 100%)'},
+        {cat:'laser',label:'Removal',h:250,g:'linear-gradient(135deg,#E91E8C 0%,#F9A8C9 100%)'},
+        {cat:'manicure',label:'French',h:210,g:'linear-gradient(135deg,#F9A8C9 0%,#FCE4EC 100%)'},
+        {cat:'pedicure',label:'Ombre',h:170,g:'linear-gradient(135deg,#9b0e63 0%,#F9A8C9 100%)'},
+      ]
+    },
+    about:{
+      title:'About the Salon',sub:'Crown Beauty Story',badge:'Woman-Owned Business',
+      p1:'Crown Beauty Salon is a place where every client feels like a queen. We offer the highest level of services in a warm, welcoming atmosphere.',
+      p2:'Our master Masha is a certified specialist with 5+ years of experience. She creates unique looks and pays attention to every detail.',
+      stats:[
+        {val:5,suf:'+',label:'Years of Experience',icon:'🏆'},
+        {val:2000,suf:'+',label:'Happy Clients',icon:'👸'},
+        {val:4.6,suf:'⭐',label:'Google Rating',icon:'⭐',dec:1},
+      ],
+      team:[
+        {name:'Masha',spec:'Nail Service Master',icon:'💅',exp:'5+ years'},
+        {name:'Aigul',spec:'Brow & Lash Specialist',icon:'👁',exp:'3+ years'},
+        {name:'Leyla',spec:'Laser Hair Removal',icon:'✨',exp:'4+ years'},
+      ],
+      features:[
+        {icon:'🏆',title:'5+ Years Experience',desc:'Long-standing professionalism'},
+        {icon:'💎',title:'Premium Materials',desc:'Only certified brands used'},
+        {icon:'♀️',title:'Woman-Owned',desc:'Created by women, for women'},
+        {icon:'❤️',title:'Client Care',desc:'Individual approach to each guest'},
+      ],
+      master:'Master Masha',masterSub:'Founder & Lead Specialist'
+    },
+    contact:{
+      title:'Contact',sub:'We await you',addr:'Address',hours:'Working Hours',
+      hoursVal:'09:00 — 20:00',phone:'Phone',web:'Website',
+      busy:'Friday — busiest day',wa:'Book via WhatsApp',call:'Call Now'
+    },
+    footer:{tag:'Your Beauty — Our Crown',rights:'All rights reserved'}
+  }
+};
+
+/* ═══════════════════════════════════════════════
+   CONTEXT + HOOKS
+═══════════════════════════════════════════════ */
+const Ctx=createContext();
+
+function useReveal(cls='rv'){
+  const ref=useRef(null);
+  useEffect(()=>{
+    const el=ref.current; if(!el) return;
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){el.classList.add('in');obs.disconnect();}
+    },{threshold:.1});
+    obs.observe(el);
+    return()=>obs.disconnect();
+  },[]);
+  return ref;
+}
+
+function useInView(threshold=.2){
+  const ref=useRef(null);
+  const [inView,setInView]=useState(false);
+  useEffect(()=>{
+    const el=ref.current; if(!el) return;
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){setInView(true);obs.disconnect();}
+    },{threshold});
+    obs.observe(el);
+    return()=>obs.disconnect();
+  },[]);
+  return [ref,inView];
+}
+
+function useCounter(target,inView,dec=0,dur=1800){
+  const [v,setV]=useState(0);
+  useEffect(()=>{
+    if(!inView) return;
+    let s=0;
+    const step=target/(dur/16);
+    const t=setInterval(()=>{
+      s+=step;
+      if(s>=target){setV(target);clearInterval(t);}
+      else setV(dec>0?parseFloat(s.toFixed(dec)):Math.floor(s));
+    },16);
+    return()=>clearInterval(t);
+  },[inView,target,dec,dur]);
+  return v;
+}
+
+function useTypewriter(text,speed=55){
+  const [disp,setDisp]=useState('');
+  const [done,setDone]=useState(false);
+  useEffect(()=>{
+    setDisp(''); setDone(false);
+    let i=0;
+    const t=setInterval(()=>{
+      if(i<text.length){setDisp(text.slice(0,i+1));i++;}
+      else{setDone(true);clearInterval(t);}
+    },speed);
+    return()=>clearInterval(t);
+  },[text,speed]);
+  return{disp,done};
+}
+
+function useParallax(){
+  const [off,setOff]=useState(0);
+  useEffect(()=>{
+    let raf=null;
+    const fn=()=>{raf=requestAnimationFrame(()=>setOff(window.scrollY*.38));};
+    window.addEventListener('scroll',fn,{passive:true});
+    return()=>{window.removeEventListener('scroll',fn);if(raf) cancelAnimationFrame(raf);};
+  },[]);
+  return off;
+}
+
+/* LangSwitcher removed — integrated into TopBar */
+
+/* ═══════════════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════════════ */
+const IGIcon=()=>(
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+  </svg>
+);
+const WAIcon=({size=13})=>(
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
+const PhoneIcon=()=>(
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+  </svg>
+);
+const ClockIcon=()=>(
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+  </svg>
+);
+
+function TopBar(){
+  const {t,lang,setLang}=useContext(Ctx);
+  const opts=[{c:'ru',f:'🇷🇺',l:'RU'},{c:'tr',f:'🇹🇷',l:'TR'},{c:'en',f:'🇬🇧',l:'EN'}];
+  return(
+    <div className="topbar">
+      <div className="topbar-left">
+        {/* Instagram */}
+        <a href="https://www.instagram.com/crownbeautysalonantalya" target="_blank" rel="noopener noreferrer" className="topbar-item topbar-r">
+          <IGIcon/><span>Instagram</span>
+        </a>
+        <span className="topbar-sep topbar-r">·</span>
+        {/* WhatsApp */}
+        <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer" className="topbar-item topbar-r">
+          <WAIcon size={13}/><span>WhatsApp</span>
+        </a>
+        <span className="topbar-pipe topbar-r">|</span>
+        {/* Phone */}
+        <span className="topbar-item" style={{gap:5}}>
+          <PhoneIcon/><span>{t.topbar.phone}</span>
+        </span>
+        <span className="topbar-pipe">|</span>
+        {/* Hours */}
+        <span className="topbar-item topbar-r" style={{gap:5}}>
+          <ClockIcon/><span>{t.topbar.hours}</span>
+        </span>
+        <span className="topbar-pipe topbar-r">|</span>
+        {/* Open badge */}
+        <span className="topbar-open topbar-r">
+          <span className="topbar-dot"/>
+          {t.topbar.open}
+        </span>
+      </div>
+      {/* Language switcher */}
+      <div className="topbar-right">
+        <div className="lang-group">
+          {opts.map(o=>(
+            <button key={o.c} onClick={()=>setLang(o.c)}
+              className={'lang-pill '+(lang===o.c?'active':'inactive')}>
+              <span>{o.f}</span><span>{o.l}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════ */
+function Navbar(){
+  const {t,lang,setLang}=useContext(Ctx);
+  const [scrolled,setScrolled]=useState(false);
+  const [scrollPct,setScrollPct]=useState(0);
+  const [open,setOpen]=useState(false);
+  const [active,setActive]=useState('hero');
+
+  useEffect(()=>{
+    const fn=()=>{
+      const y=window.scrollY;
+      setScrolled(y>60);
+      const total=document.body.scrollHeight-window.innerHeight;
+      if(total>0)setScrollPct(Math.min(100,(y/total)*100));
+    };
+    window.addEventListener('scroll',fn,{passive:true});
+    return()=>window.removeEventListener('scroll',fn);
+  },[]);
+
+  useEffect(()=>{
+    const ids=['hero','services','reviews','gallery','about','contact'];
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id)});
+    },{threshold:0.4});
+    ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el)});
+    return()=>obs.disconnect();
+  },[]);
+
+  const links=[['home','hero','#hero'],['services','services','#services'],['reviews','reviews','#reviews'],['gallery','gallery','#gallery'],['about','about','#about'],['contact','contact','#contact']];
+
+  return(
+    <>
+    <nav className={'nav-glass'+(scrolled?' scrolled':'')}>
+      {/* Top white shimmer line */}
+      <div className="nav-glass-shine"/>
+      {/* Scroll progress bar */}
+      <div className="nav-glass-progress" style={{width:scrollPct+'%'}}/>
+
+      <div className="nav-glass-inner">
+        {/* Logo */}
+        <a href="#hero" style={{textDecoration:'none',display:'flex',alignItems:'center',gap:10,flexShrink:0}}>
+          <img src="logo.png" alt="Crown Beauty Salon" style={{height:44,width:'auto',objectFit:'contain',display:'block',filter:'drop-shadow(0 2px 8px rgba(229,23,126,.25))'}}
+            onError={e=>e.target.style.display='none'}/>
+          <div>
+            <div style={{fontFamily:"'Playfair Display',serif",fontWeight:700,fontSize:18,color:'#2D2D2D',lineHeight:1.1,letterSpacing:'.01em'}}>Crown</div>
+            <div style={{fontFamily:"'Inter',sans-serif",fontSize:'8.5px',color:'#E5177E',letterSpacing:'.18em',textTransform:'uppercase',fontWeight:600}}>BEAUTY SALON</div>
+          </div>
+        </a>
+
+        {/* Desktop nav links */}
+        <div className="dknav" style={{display:'flex',alignItems:'center',gap:2}}>
+          {links.map(([k,id,h])=>(
+            <a key={k} href={h} className={'nav-link'+(active===id?' act':'')}>{t.nav[k]}</a>
+          ))}
+        </div>
+
+        {/* Desktop right — WA circle + Записаться */}
+        <div className="dknav" style={{display:'flex',alignItems:'center',gap:10,flexShrink:0}}>
+          <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer"
+            className="nav-wa-btn" title="WhatsApp">
+            <WAIcon size={18}/>
+          </a>
+          <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer"
+            className="nav-cta">
+            {t.hero.cta}
+          </a>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button className="mobbtn" onClick={()=>setOpen(o=>!o)} aria-label="Menu"
+          style={{background:'none',border:'none',cursor:'pointer',display:'none',flexDirection:'column',gap:5,padding:6,marginLeft:8}}>
+          {[0,1,2].map(i=>(
+            <span key={i} style={{
+              width:24,height:2.5,background:'#E5177E',borderRadius:2,display:'block',
+              transition:'transform .3s ease,opacity .3s ease',
+              transform:open?(i===0?'translateY(7.5px) rotate(45deg)':i===2?'translateY(-7.5px) rotate(-45deg)':'none'):'none',
+              opacity:open&&i===1?0:1
+            }}/>
+          ))}
+        </button>
+      </div>
+    </nav>
+
+    {/* Mobile drawer */}
+    {open&&(
+      <div style={{
+        position:'fixed',top:60,left:0,right:0,zIndex:999,
+        background:'rgba(255,228,244,.96)',
+        backdropFilter:'blur(32px) saturate(1.8)',
+        WebkitBackdropFilter:'blur(32px) saturate(1.8)',
+        borderBottom:'1px solid rgba(249,168,201,.28)',
+        boxShadow:'0 14px 44px rgba(229,23,126,.13)',
+        animation:'scrollDrop .28s ease both'
+      }}>
+        <div style={{padding:'10px 24px 20px',display:'flex',flexDirection:'column'}}>
+          <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:'linear-gradient(90deg,transparent,rgba(255,255,255,.85) 30%,rgba(255,255,255,.85) 70%,transparent)',pointerEvents:'none'}}/>
+          {links.map(([k,id,h])=>(
+            <a key={k} href={h} onClick={()=>setOpen(false)}
+              style={{
+                textDecoration:'none',
+                color:active===id?'#E5177E':'#2D2D2D',
+                fontSize:'1rem',fontWeight:active===id?700:500,
+                padding:'13px 6px',
+                borderBottom:'1px solid rgba(249,168,201,.18)',
+                display:'flex',alignItems:'center',justifyContent:'space-between',
+                transition:'color .2s'
+              }}
+              onMouseEnter={e=>e.currentTarget.style.color='#E5177E'}
+              onMouseLeave={e=>e.currentTarget.style.color=active===id?'#E5177E':'#2D2D2D'}>
+              {t.nav[k]}
+              {active===id&&<span style={{width:7,height:7,borderRadius:'50%',background:'linear-gradient(135deg,#E5177E,#F9A8C9)',display:'inline-block',boxShadow:'0 0 6px rgba(229,23,126,.5)'}}/>}
+            </a>
+          ))}
+          {/* Language switcher in mobile drawer */}
+          <div style={{display:'flex',gap:6,marginTop:14,marginBottom:4}}>
+            {[{c:'ru',f:'🇷🇺',l:'RU'},{c:'tr',f:'🇹🇷',l:'TR'},{c:'en',f:'🇬🇧',l:'EN'}].map(o=>(
+              <button key={o.c} onClick={()=>{setLang(o.c);setOpen(false);}} style={{flex:1,padding:'8px 0',borderRadius:12,border:'1.5px solid rgba(229,23,126,.25)',background:lang===o.c?'rgba(229,23,126,.15)':'rgba(229,23,126,.06)',color:'#E5177E',fontFamily:'Inter,sans-serif',fontWeight:lang===o.c?700:600,fontSize:'.8rem',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:4}}>
+                {o.f} {o.l}
+              </button>
+            ))}
+          </div>
+          <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer"
+            style={{
+              display:'flex',alignItems:'center',justifyContent:'center',gap:8,
+              marginTop:10,padding:'13px',borderRadius:16,
+              background:'linear-gradient(135deg,#E5177E,#c4106e)',
+              color:'#fff',textDecoration:'none',fontWeight:700,fontSize:'.9rem',
+              boxShadow:'0 6px 24px rgba(229,23,126,.35)',
+              letterSpacing:'.03em'
+            }}>
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    )}
+    </>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+function Hero(){
+  const {t}=useContext(Ctx);
+  const {disp,done}=useTypewriter(t.hero.line2,95);
+  const parallax=useParallax();
+  return(
+    <section id="hero" style={{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',position:'relative',overflow:'hidden',padding:'140px 24px 80px',textAlign:'center'}}>
+      {/* Parallax BG */}
+      <div style={{position:'absolute',inset:0,transform:`translateY(${parallax}px)`,transition:'transform .05s',zIndex:0,willChange:'transform',overflow:'hidden'}}>
+        <img src={HERO_BG} alt="" aria-hidden="true" loading="eager"
+          style={{position:'absolute',inset:0,width:'100%',height:'120%',objectFit:'cover',objectPosition:'center',opacity:.12,display:'block'}}
+          onError={e=>e.target.style.display='none'}/>
+        <div style={{position:'absolute',inset:0,background:'linear-gradient(155deg,#FFF5F9 0%,rgba(255,255,255,.7) 40%,#FCE4EC 100%)'}}/>
+      </div>
+      <div style={{position:'absolute',inset:0,backgroundImage:'radial-gradient(circle at 15% 40%,rgba(249,168,201,.22) 0%,transparent 55%),radial-gradient(circle at 85% 20%,rgba(233,30,140,.09) 0%,transparent 50%),radial-gradient(circle at 60% 85%,rgba(252,228,236,.38) 0%,transparent 55%)',zIndex:1,pointerEvents:'none'}}/>
+
+      {/* Diamond mesh pattern — same as other sections */}
+      <div style={{position:'absolute',inset:0,zIndex:2,pointerEvents:'none',backgroundImage:'repeating-linear-gradient(-45deg,transparent 0,transparent 26px,rgba(249,168,201,.07) 26px,rgba(249,168,201,.07) 27.5px),repeating-linear-gradient(45deg,transparent 0,transparent 26px,rgba(249,168,201,.07) 26px,rgba(249,168,201,.07) 27.5px)'}}/>
+      <div style={{position:'absolute',inset:0,zIndex:2,pointerEvents:'none',backgroundImage:'radial-gradient(circle,rgba(233,30,140,.06) 1.2px,transparent 1.2px)',backgroundSize:'37px 37px',backgroundPosition:'18px 18px'}}/>
+
+      <div style={{position:'relative',zIndex:3,maxWidth:820,animation:'fadeInUp 1.6s ease both'}}>
+        {/* Rating pill */}
+        <div style={{display:'inline-flex',alignItems:'center',gap:9,background:'rgba(255,255,255,.9)',border:'1px solid rgba(249,168,201,.45)',borderRadius:30,padding:'7px 18px',marginBottom:26,boxShadow:'0 4px 20px rgba(233,30,140,.1)',backdropFilter:'blur(10px)'}}>
+          <span style={{color:'#E91E8C',fontSize:'1rem',letterSpacing:2}}>★★★★★</span>
+          <span style={{fontWeight:700,fontSize:'.88rem'}}>4.6</span>
+          <span style={{color:'#bbb',fontSize:'.76rem'}}>· {t.hero.rating}</span>
+          <span style={{fontSize:'.72rem',fontWeight:700,letterSpacing:'.06em',textTransform:'uppercase',background:'linear-gradient(135deg,#E91E8C,#F9A8C9)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>{t.hero.badge}</span>
+        </div>
+
+        <div style={{fontSize:112,lineHeight:1,marginBottom:18,animation:'crownFloat 4s ease-in-out infinite',display:'inline-block',userSelect:'none'}}>👑</div>
+
+        {/* Intro line */}
+        <h1 style={{
+          fontFamily:"'Playfair Display',serif",
+          fontSize:'clamp(42px,8.5vw,96px)',
+          fontWeight:800,
+          letterSpacing:'-.03em',
+          lineHeight:.97,
+          marginBottom:8,
+          color:'#2D2D2D',
+        }}>
+          {t.hero.line1}
+        </h1>
+
+        {/* Главный заголовок — доминирует */}
+        <h1 style={{
+          fontFamily:"'Playfair Display',serif",
+          fontSize:'clamp(36px,8.5vw,152px)',
+          fontWeight:800,
+          lineHeight:.97,
+          letterSpacing:'-.03em',
+          marginBottom:0,
+          minHeight:'1em',
+          whiteSpace:'nowrap',
+        }}>
+          <span className="gtext">{disp}</span>
+          {!done&&<span className="cursor"/>}
+        </h1>
+
+        {/* Подзаголовок — спокойный, не кричащий */}
+        <p style={{
+          fontSize:'.9rem',
+          color:'rgba(100,60,75,.6)',
+          margin:'26px 0 48px',
+          fontWeight:300,
+          letterSpacing:'.08em',
+          lineHeight:1.8,
+        }}>
+          {t.hero.sub}
+        </p>
+
+        <div className="hero-btns" style={{display:'flex',gap:16,justifyContent:'center',flexWrap:'wrap'}}>
+          <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer"
+            style={{background:'linear-gradient(135deg,#E91E8C,#b5106a)',color:'#fff',padding:'17px 42px',borderRadius:38,textDecoration:'none',fontSize:'1rem',fontWeight:700,boxShadow:'0 10px 30px rgba(233,30,140,.35)',transition:'transform .28s,box-shadow .28s',letterSpacing:'.03em',animation:'pulseRing 2.5s infinite'}}
+            onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 18px 42px rgba(233,30,140,.45)'}}
+            onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='0 10px 30px rgba(233,30,140,.35)'}}>
+            {t.hero.cta}
+          </a>
+          <a href="#services"
+            style={{background:'rgba(255,255,255,.85)',color:'#E91E8C',padding:'17px 42px',borderRadius:38,textDecoration:'none',fontSize:'1rem',fontWeight:700,border:'2px solid #E91E8C',transition:'all .28s',backdropFilter:'blur(10px)'}}
+            onMouseEnter={e=>{e.currentTarget.style.background='#FFF5F9';e.currentTarget.style.transform='translateY(-4px)'}}
+            onMouseLeave={e=>{e.currentTarget.style.background='rgba(255,255,255,.85)';e.currentTarget.style.transform='translateY(0)'}}>
+            {t.hero.cta2}
+          </a>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   MARQUEE DIVIDER
+═══════════════════════════════════════════════ */
+function Marquee(){
+  const {t}=useContext(Ctx);
+  const txt=t.marquee;
+  return(
+    <div style={{background:'linear-gradient(90deg,#E91E8C,#c4106e)',padding:'14px 0',overflow:'hidden',position:'relative'}}>
+      <div className="mq-inner">
+        {[...Array(4)].map((_,i)=>(
+          <span key={i} style={{fontSize:'.82rem',fontWeight:600,color:'rgba(255,255,255,.92)',letterSpacing:'.05em',paddingRight:0}}>{txt}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   SERVICES (3 × 2 grid)
+═══════════════════════════════════════════════ */
+function Services(){
+  const {t}=useContext(Ctx);
+  const r=useReveal();
+  return(
+    <section id="services" style={{padding:'80px 24px',background:'#FFF5F9'}}>
+      <div style={{maxWidth:1100,margin:'0 auto'}}>
+        <div className="rv" ref={r} style={{textAlign:'center',marginBottom:52}}>
+          <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Crown Beauty ✦</span>
+          <h2 style={{fontSize:'clamp(26px,5vw,50px)',fontWeight:700,color:'#2D2D2D',margin:'10px 0 9px'}}>{t.services.title}</h2>
+          <p style={{color:'#999',fontSize:'1rem'}}>{t.services.sub}</p>
+        </div>
+        <div className="srv-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:24}}>
+          {t.services.items.map((s,i)=><SCard key={i} s={s} i={i}/>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SCard({s,i}){
+  const ref=useReveal();
+  return(
+    <div ref={ref} className="rv scard" style={{
+      background:'rgba(255,255,255,.94)',
+      borderRadius:24,padding:'30px 24px 24px',
+      border:'1px solid rgba(249,168,201,.2)',
+      boxShadow:'0 6px 28px rgba(233,30,140,.07)',
+      transitionDelay:`${i*80}ms`,
+      position:'relative',overflow:'hidden'
+    }}>
+      <div className="shimmer-line"/>
+      <div className="scard-bar"/>
+
+      {/* price badge */}
+      <div className="scard-price" style={{
+        position:'absolute',top:18,right:16,
+        background:'linear-gradient(135deg,#E91E8C,#c4106e)',
+        color:'white',padding:'4px 12px',borderRadius:14,
+        fontSize:'.68rem',fontWeight:700,letterSpacing:'.03em',
+        transition:'box-shadow .38s ease'
+      }}>{s.price}</div>
+
+      {/* icon */}
+      <div style={{marginBottom:14}}>
+        <span className="scard-icon">{s.icon}</span>
+      </div>
+
+      <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'1.22rem',fontWeight:700,color:'#2D2D2D',marginBottom:9,paddingRight:80,lineHeight:1.2}}>{s.name}</h3>
+      <p style={{fontSize:'.86rem',color:'#999',lineHeight:1.72,marginBottom:18}}>{s.desc}</p>
+
+      <div style={{display:'flex',alignItems:'center',gap:6,paddingTop:14,borderTop:'1px solid rgba(249,168,201,.16)'}}>
+        <span style={{fontSize:'.7rem',color:'#cbb'}}>⏱</span>
+        <span style={{fontSize:'.75rem',color:'#bbb'}}>{s.dur}</span>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   REVIEWS
+═══════════════════════════════════════════════ */
+const GOOGLE_G=()=>(
+  <svg width="20" height="20" viewBox="0 0 24 24">
+    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+  </svg>
+);
+
+function Reviews(){
+  const {t}=useContext(Ctx);
+  const r=useReveal();
+  const [idx,setIdx]=useState(0);
+  const [paused,setPaused]=useState(false);
+  const [expanded,setExpanded]=useState({});
+  const containerRef=useRef(null);
+  const [cw,setCw]=useState(0);
+  const [winW,setWinW]=useState(typeof window!=='undefined'?window.innerWidth:1200);
+
+  const items=t.reviews.items;
+  const GAP=22;
+  const vis=winW>=900?3:1;
+  const max=Math.max(0,items.length-vis);
+  const cardW=cw>0?(cw-(vis-1)*GAP)/vis:0;
+  const step=cardW+GAP;
+  const TRUNC=120;
+
+  useEffect(()=>{
+    const measure=()=>{
+      setWinW(window.innerWidth);
+      if(containerRef.current) setCw(containerRef.current.offsetWidth);
+    };
+    measure();
+    window.addEventListener('resize',measure);
+    return()=>window.removeEventListener('resize',measure);
+  },[]);
+
+  useEffect(()=>{ setIdx(i=>Math.min(i,max)); },[max]);
+
+  useEffect(()=>{
+    if(paused) return;
+    const tm=setInterval(()=>setIdx(i=>i>=max?0:i+1),4000);
+    return()=>clearInterval(tm);
+  },[paused,max]);
+
+  const prev=()=>setIdx(i=>i<=0?max:i-1);
+  const next=()=>setIdx(i=>i>=max?0:i+1);
+
+  return(
+    <section id="reviews" style={{padding:'80px 24px',background:'white'}}>
+      <div style={{maxWidth:1100,margin:'0 auto'}}>
+
+        {/* ── Header ── */}
+        <div className="rv" ref={r} style={{textAlign:'center',marginBottom:42}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:9,background:'#fff',border:'1px solid rgba(249,168,201,.28)',borderRadius:30,padding:'8px 18px',marginBottom:16,boxShadow:'0 2px 12px rgba(233,30,140,.07)'}}>
+            <GOOGLE_G/>
+            <span style={{fontSize:'.9rem',fontWeight:600,color:'#5f6368',letterSpacing:.01}}>Отзывы с Google</span>
+            <span style={{color:'#e0e0e0',margin:'0 2px'}}>|</span>
+            <span style={{fontFamily:'Playfair Display,serif',fontSize:'1.25rem',fontWeight:700,color:'#2D2D2D',lineHeight:1}}>4.6</span>
+            <span style={{color:'#E91E8C',fontSize:'.9rem',letterSpacing:1}}>★★★★★</span>
+            <span style={{fontSize:'.75rem',color:'#aaa'}}>230 отзывов</span>
+          </div>
+          <div>
+            <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Google Reviews ✦</span>
+          </div>
+          <h2 style={{fontSize:'clamp(26px,5vw,50px)',fontWeight:700,color:'#2D2D2D',margin:'10px 0 9px'}}>{t.reviews.title}</h2>
+          <p style={{color:'#999',fontSize:'1rem'}}>{t.reviews.sub}</p>
+        </div>
+
+        {/* ── Carousel ── */}
+        <div style={{position:'relative'}} onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>setPaused(false)}>
+          <button className="rv-arr" onClick={prev} style={{left:0}} aria-label="Назад">‹</button>
+          <div ref={containerRef} style={{overflow:'hidden',margin:'0 54px',borderRadius:4}}>
+            <div style={{
+              display:'flex',
+              gap:GAP,
+              transition:cw?'transform .55s cubic-bezier(.23,1,.32,1)':'none',
+              transform:cardW?`translateX(${-idx*step}px)`:'none',
+              willChange:'transform',
+              paddingBottom:4
+            }}>
+              {items.map((rv,i)=>{
+                const isLong=rv.text.length>TRUNC;
+                const isExp=!!expanded[i];
+                const w=cardW||280;
+                return(
+                  <div key={i} className="rvcard-wrap" style={{width:w,minWidth:w,maxWidth:w}}>
+                    <div className="rvcard">
+
+                      {/* name row */}
+                      <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:14}}>
+                        <div className="rvcard-av">{rv.name[0]}</div>
+                        <div style={{flex:1,minWidth:0}}>
+                          <div style={{fontWeight:700,fontSize:'.93rem',color:'#2D2D2D',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{rv.name}</div>
+                          <div style={{fontSize:'.71rem',color:'#bbb',marginTop:2}}>{rv.time}</div>
+                        </div>
+                        <GOOGLE_G/>
+                      </div>
+
+                      {/* stars */}
+                      <div className="rvcard-stars" style={{marginBottom:12}}>★★★★★</div>
+
+                      {/* text */}
+                      <p style={{fontSize:'.87rem',color:'#555',lineHeight:1.75,margin:0}}>
+                        {isLong&&!isExp?rv.text.slice(0,TRUNC)+'…':rv.text}
+                        {isLong&&!isExp&&(
+                          <button onClick={e=>{e.stopPropagation();setExpanded(x=>({...x,[i]:true}))}}
+                            style={{background:'none',border:'none',color:'#E91E8C',fontSize:'.81rem',fontWeight:600,cursor:'pointer',padding:'0 0 0 4px',fontFamily:'Inter,sans-serif',display:'inline'}}>
+                            Читать далее
+                          </button>
+                        )}
+                      </p>
+
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <button className="rv-arr" onClick={next} style={{right:0}} aria-label="Далее">›</button>
+        </div>
+
+        {/* ── Dots ── */}
+        <div style={{display:'flex',justifyContent:'center',gap:8,marginTop:26}}>
+          {Array.from({length:max+1}).map((_,i)=>(
+            <div key={i} onClick={()=>setIdx(i)} style={{
+              width:i===idx?28:8,height:8,borderRadius:4,
+              background:i===idx?'#E91E8C':'#FCE4EC',
+              cursor:'pointer',transition:'all .3s'
+            }}/>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   GALLERY with filter tabs
+═══════════════════════════════════════════════ */
+function Gallery(){
+  const {t}=useContext(Ctx);
+  const r=useReveal();
+  const [filter,setFilter]=useState('all');
+  const items=t.gallery.items;
+  const filtered=filter==='all'?items:items.filter(x=>x.cat===filter);
+  const tabs=[['all','all'],['manicure','manicure'],['pedicure','pedicure'],['laser','laser']];
+  return(
+    <section id="gallery" style={{padding:'80px 24px',background:'#FFF5F9'}}>
+      <div style={{maxWidth:1100,margin:'0 auto'}}>
+        <div className="rv" ref={r} style={{textAlign:'center',marginBottom:42}}>
+          <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Portfolio ✦</span>
+          <h2 style={{fontSize:'clamp(26px,5vw,50px)',fontWeight:700,color:'#2D2D2D',margin:'10px 0 9px'}}>{t.gallery.title}</h2>
+          <p style={{color:'#999',fontSize:'1rem',marginBottom:28}}>{t.gallery.sub}</p>
+          {/* Filter tabs */}
+          <div style={{display:'flex',justifyContent:'center',gap:10,flexWrap:'wrap'}}>
+            {tabs.map(([k,v])=>(
+              <button key={k} onClick={()=>setFilter(v)} className={`ftab${filter===v?' on':''}`}>
+                {t.gallery.tabs[k]}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div style={{columns:3,columnGap:16}}>
+          {filtered.map((it)=>{
+            const origIdx=t.gallery.items.indexOf(it);
+            const photo=GPHOTOS[origIdx]||GPHOTOS[0];
+            return(
+            <div key={`${filter}-${origIdx}`} className="gcrd" style={{breakInside:'avoid',marginBottom:16,height:it.h}}>
+              <div className="gcrd-inner" style={{background:it.g,height:'100%',width:'100%',position:'relative',overflow:'hidden'}}>
+                <img src={photo} alt={it.label} loading="lazy"
+                  style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}
+                  onError={e=>{e.target.style.display='none';}}/>
+                <span style={{fontSize:48,opacity:.15,position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',pointerEvents:'none',zIndex:1}}>👑</span>
+              </div>
+              <div className="gcrd-ov">
+                <span style={{color:'white',fontWeight:700,fontSize:'.85rem',letterSpacing:'.04em'}}>{it.label}</span>
+                <span className="look-btn">{t.gallery.look} →</span>
+              </div>
+            </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   STAT COUNTER
+═══════════════════════════════════════════════ */
+function StatItem({val,suf,label,icon,dec}){
+  const [ref,inView]=useInView(.3);
+  const count=useCounter(val,inView,dec||0);
+  return(
+    <div ref={ref} style={{background:'white',borderRadius:22,padding:'28px 20px',textAlign:'center',border:'1px solid rgba(249,168,201,.18)',boxShadow:'0 6px 22px rgba(233,30,140,.07)',transition:'transform .3s,box-shadow .3s'}}
+      onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-6px)';e.currentTarget.style.boxShadow='0 18px 40px rgba(233,30,140,.15)'}}
+      onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='0 6px 22px rgba(233,30,140,.07)'}}>
+      <div style={{fontSize:'1.8rem',marginBottom:8}}>{icon}</div>
+      <div style={{fontFamily:'Playfair Display,serif',fontSize:'clamp(2rem,4vw,2.8rem)',fontWeight:700,color:'#E91E8C',lineHeight:1}}>
+        {dec?count.toFixed(dec):count}{suf}
+      </div>
+      <div style={{fontSize:'.82rem',color:'#999',marginTop:7,fontWeight:500}}>{label}</div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════ */
+function About(){
+  const {t}=useContext(Ctx);
+  const rl=useReveal('rv-l');
+  const rr=useReveal('rv-r');
+  const rs=useReveal();
+  const rt=useReveal();
+  const rf=useReveal();
+  return(
+    <section id="about" style={{padding:'80px 24px',background:'white'}}>
+      <div style={{maxWidth:1100,margin:'0 auto'}}>
+        {/* Main grid */}
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))',gap:56,alignItems:'center',marginBottom:64}}>
+          {/* Visual */}
+          <div className="rv-l" ref={rl} style={{position:'relative'}}>
+            <div style={{maxWidth:420,margin:'0 auto',aspectRatio:'4/5',background:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 50%,#E91E8C 100%)',borderRadius:32,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',position:'relative',overflow:'hidden',boxShadow:'0 20px 60px rgba(233,30,140,.2)'}}>
+              <span style={{fontSize:120,opacity:.15,position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-58%)'}}>👑</span>
+              <span style={{fontSize:90,position:'relative',zIndex:1,filter:'drop-shadow(0 4px 12px rgba(0,0,0,.1))'}}>💆‍♀️</span>
+              <div style={{position:'absolute',bottom:24,left:'50%',transform:'translateX(-50%)',background:'rgba(255,255,255,.95)',borderRadius:18,padding:'13px 26px',textAlign:'center',boxShadow:'0 6px 24px rgba(233,30,140,.15)',whiteSpace:'nowrap',backdropFilter:'blur(8px)'}}>
+                <div style={{fontFamily:'Playfair Display,serif',fontWeight:700,fontSize:'1.1rem',color:'#2D2D2D'}}>{t.about.master}</div>
+                <div style={{fontSize:'.72rem',color:'#E91E8C',fontWeight:600,marginTop:3,letterSpacing:'.04em'}}>{t.about.masterSub}</div>
+              </div>
+            </div>
+            <div style={{position:'absolute',top:-16,right:'7%',background:'linear-gradient(135deg,#E91E8C,#b5106a)',color:'white',padding:'9px 18px',borderRadius:22,fontSize:'.76rem',fontWeight:700,letterSpacing:'.07em',textTransform:'uppercase',boxShadow:'0 6px 20px rgba(233,30,140,.35)',display:'flex',alignItems:'center',gap:6}}>
+              ♀ {t.about.badge}
+            </div>
+          </div>
+          {/* Text */}
+          <div className="rv-r" ref={rr}>
+            <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Crown Beauty ✦</span>
+            <h2 style={{fontSize:'clamp(24px,4vw,44px)',fontWeight:700,color:'#2D2D2D',margin:'12px 0 20px',lineHeight:1.2}}>{t.about.title}</h2>
+            <p style={{fontSize:'1rem',color:'#666',lineHeight:1.8,marginBottom:16}}>{t.about.p1}</p>
+            <p style={{fontSize:'1rem',color:'#666',lineHeight:1.8,marginBottom:36}}>{t.about.p2}</p>
+            {/* Stats */}
+            <div className="stats-row" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
+              {t.about.stats.map((s,i)=><StatItem key={i} {...s}/>)}
+            </div>
+          </div>
+        </div>
+
+        {/* "Why us" features */}
+        <div className="rv" ref={rf} style={{marginBottom:56}}>
+          <div style={{textAlign:'center',marginBottom:36}}>
+            <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Почему выбирают нас ✦</span>
+          </div>
+          <div className="feat-grid" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:20}}>
+            {t.about.features.map((f,i)=>(
+              <div key={i} style={{background:'#FFF5F9',borderRadius:20,padding:'26px 20px',textAlign:'center',border:'1px solid rgba(249,168,201,.18)',transition:'transform .3s,box-shadow .3s'}}
+                onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-6px)';e.currentTarget.style.boxShadow='0 16px 36px rgba(233,30,140,.12)'}}
+                onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+                <div style={{fontSize:'2.2rem',marginBottom:12}}>{f.icon}</div>
+                <h4 style={{fontSize:'.95rem',fontWeight:700,color:'#2D2D2D',marginBottom:6}}>{f.title}</h4>
+                <p style={{fontSize:'.8rem',color:'#aaa',lineHeight:1.6}}>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Team */}
+        <div className="rv" ref={rt}>
+          <div style={{textAlign:'center',marginBottom:36}}>
+            <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Наша команда ✦</span>
+          </div>
+          <div className="team-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:24}}>
+            {t.about.team.map((m,i)=>(
+              <div key={i} className="team-card" style={{background:'white',borderRadius:24,padding:'32px 24px',textAlign:'center',border:'1px solid rgba(249,168,201,.18)',boxShadow:'0 6px 22px rgba(233,30,140,.07)'}}>
+                {/* Elegant initial avatar — no emoji */}
+                <div style={{width:96,height:96,borderRadius:'50%',background:'linear-gradient(145deg,#FCE4EC 0%,#F9A8C9 45%,#E91E8C 100%)',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',boxShadow:'0 8px 28px rgba(233,30,140,.22)',position:'relative',flexShrink:0}}>
+                  <div style={{position:'absolute',inset:2,borderRadius:'50%',background:'linear-gradient(145deg,rgba(255,255,255,.22),transparent 55%)',pointerEvents:'none'}}/>
+                  <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:'2.5rem',fontWeight:500,color:'white',lineHeight:1,letterSpacing:'.04em',textShadow:'0 2px 10px rgba(0,0,0,.18)',position:'relative',zIndex:1,userSelect:'none'}}>
+                    {m.name[0]}
+                  </span>
+                </div>
+                <h3 style={{fontFamily:'Playfair Display,serif',fontSize:'1.25rem',fontWeight:700,color:'#2D2D2D',marginBottom:6}}>{m.name}</h3>
+                <p style={{fontSize:'.85rem',color:'#E91E8C',fontWeight:600,marginBottom:8}}>{m.spec}</p>
+                <span style={{background:'#FFF5F9',border:'1px solid rgba(249,168,201,.3)',borderRadius:14,padding:'3px 12px',fontSize:'.75rem',color:'#888',fontWeight:500}}>{m.exp}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+function Contact(){
+  const {t}=useContext(Ctx);
+  const r=useReveal();
+  const info=[
+    {icon:'📍',label:t.contact.addr,val:'Öğretmenevleri, 924. Sk. No:5 D:1, 07070 Konyaaltı/Antalya'},
+    {icon:'🕐',label:t.contact.hours,val:t.contact.hoursVal,note:t.contact.busy},
+    {icon:'📞',label:t.contact.phone,val:'0545 255 01 04',href:'tel:+905452550104'},
+    {icon:'🌐',label:t.contact.web,val:'crownbeautyantalya.com',href:'https://crownbeautyantalya.com'},
+  ];
+  return(
+    <section id="contact" style={{padding:'80px 24px',background:'#FFF5F9'}}>
+      <div style={{maxWidth:1100,margin:'0 auto'}}>
+        <div className="rv" ref={r} style={{textAlign:'center',marginBottom:50}}>
+          <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Antalya ✦</span>
+          <h2 style={{fontSize:'clamp(26px,5vw,50px)',fontWeight:700,color:'#2D2D2D',margin:'10px 0 9px'}}>{t.contact.title}</h2>
+          <p style={{color:'#999',fontSize:'1rem'}}>{t.contact.sub}</p>
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(340px,1fr))',gap:40,alignItems:'start'}}>
+          <div>
+            <div style={{display:'flex',flexDirection:'column',gap:14,marginBottom:26}}>
+              {info.map((it,i)=>(
+                <div key={i} style={{background:'white',borderRadius:18,padding:'18px 20px',display:'flex',alignItems:'flex-start',gap:14,border:'1px solid rgba(249,168,201,.18)',boxShadow:'0 4px 16px rgba(233,30,140,.04)'}}>
+                  <span style={{fontSize:'1.35rem',minWidth:30,lineHeight:1.3}}>{it.icon}</span>
+                  <div>
+                    <div style={{fontSize:'.68rem',color:'#E91E8C',fontWeight:700,textTransform:'uppercase',letterSpacing:'.13em',marginBottom:5}}>{it.label}</div>
+                    {it.href?<a href={it.href} style={{fontSize:'.95rem',color:'#2D2D2D',fontWeight:500,textDecoration:'none'}}>{it.val}</a>:<div style={{fontSize:'.95rem',color:'#2D2D2D',fontWeight:500}}>{it.val}</div>}
+                    {it.note&&<div style={{fontSize:'.78rem',color:'#E91E8C',marginTop:4,fontStyle:'italic'}}>{it.note}</div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{display:'flex',gap:12,flexWrap:'wrap'}}>
+              <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer"
+                style={{background:'#25D366',color:'white',padding:'14px 24px',borderRadius:30,textDecoration:'none',fontSize:'.88rem',fontWeight:700,display:'flex',alignItems:'center',gap:8,boxShadow:'0 6px 18px rgba(37,211,102,.3)',transition:'transform .2s'}}
+                onMouseEnter={e=>e.currentTarget.style.transform='translateY(-3px)'}
+                onMouseLeave={e=>e.currentTarget.style.transform='translateY(0)'}>
+                💬 {t.contact.wa}
+              </a>
+              <a href="tel:+905452550104"
+                style={{background:'linear-gradient(135deg,#E91E8C,#b5106a)',color:'white',padding:'14px 24px',borderRadius:30,textDecoration:'none',fontSize:'.88rem',fontWeight:700,display:'flex',alignItems:'center',gap:8,boxShadow:'0 6px 18px rgba(233,30,140,.3)',transition:'transform .2s'}}
+                onMouseEnter={e=>e.currentTarget.style.transform='translateY(-3px)'}
+                onMouseLeave={e=>e.currentTarget.style.transform='translateY(0)'}>
+                📞 {t.contact.call}
+              </a>
+            </div>
+          </div>
+          <div style={{borderRadius:22,overflow:'hidden',boxShadow:'0 10px 36px rgba(233,30,140,.1)',border:'2px solid rgba(249,168,201,.28)',height:400}}>
+            <iframe
+              src="https://maps.google.com/maps?q=Öğretmenevleri+924+Sk+No+5+Konyaaltı+Antalya+Turkey&output=embed&hl=ru"
+              width="100%" height="100%" style={{border:0}}
+              allowFullScreen="" loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Crown Beauty Salon Location"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+function Footer(){
+  const {t}=useContext(Ctx);
+  const yr=new Date().getFullYear();
+  return(
+    <footer style={{background:'#160810',color:'white',padding:'60px 24px 28px'}}>
+      <div style={{maxWidth:1100,margin:'0 auto'}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:40,marginBottom:40}}>
+          <div>
+            <p style={{fontSize:'.85rem',color:'rgba(255,255,255,.5)',lineHeight:1.75,marginBottom:18}}>{t.footer.tag}</p>
+            <img src="logo.png" alt="Crown Beauty Salon" style={{height:90,width:'auto',objectFit:'contain',display:'block',filter:'brightness(0) invert(1)',opacity:.7}}/>
+          </div>
+          <div>
+            <h4 style={{fontSize:'.85rem',color:'#F9A8C9',marginBottom:14,fontWeight:700,letterSpacing:'.06em',textTransform:'uppercase'}}>Crown Beauty</h4>
+            <p style={{fontSize:'.82rem',color:'rgba(255,255,255,.5)',lineHeight:1.75}}>Öğretmenevleri, 924. Sk.<br/>No:5 D:1, 07070 Konyaaltı/Antalya</p>
+            <a href="tel:+905452550104" style={{display:'block',marginTop:9,fontSize:'.88rem',color:'#F9A8C9',textDecoration:'none'}}>0545 255 01 04</a>
+            <a href="https://crownbeautyantalya.com" style={{display:'block',marginTop:4,fontSize:'.8rem',color:'rgba(249,168,201,.6)',textDecoration:'none'}}>crownbeautyantalya.com</a>
+          </div>
+          <div>
+            <h4 style={{fontSize:'.85rem',color:'#F9A8C9',marginBottom:14,fontWeight:700,letterSpacing:'.06em',textTransform:'uppercase'}}>{t.nav.services}</h4>
+            {t.services.items.map((s,i)=>(
+              <a key={i} href="#services" style={{display:'block',fontSize:'.82rem',color:'rgba(255,255,255,.5)',textDecoration:'none',marginBottom:9,transition:'color .2s'}}
+                onMouseEnter={e=>e.target.style.color='#F9A8C9'}
+                onMouseLeave={e=>e.target.style.color='rgba(255,255,255,.5)'}>{s.name}</a>
+            ))}
+          </div>
+        </div>
+        <div style={{borderTop:'1px solid rgba(249,168,201,.08)',paddingTop:22,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:10}}>
+          <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.3)'}}>© {yr} Crown Beauty Salon. {t.footer.rights}</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   FLOATING BUTTONS (Liquid Glass)
+═══════════════════════════════════════════════ */
+function ScrollTopBtn(){
+  const [visible,setVisible]=useState(false);
+  const [pct,setPct]=useState(0);
+  useEffect(()=>{
+    const fn=()=>{
+      const y=window.scrollY;
+      setVisible(y>400);
+      const total=document.body.scrollHeight-window.innerHeight;
+      if(total>0) setPct((y/total)*100);
+    };
+    window.addEventListener('scroll',fn,{passive:true});
+    return()=>window.removeEventListener('scroll',fn);
+  },[]);
+  const R=22;
+  const circ=2*Math.PI*R;
+  const offset=circ-(pct/100)*circ;
+  return(
+    <button className="stt-btn" onClick={()=>window.scrollTo({top:0,behavior:'smooth'})} aria-label="Наверх"
+      style={{opacity:visible?1:0,transform:visible?'translateY(0) scale(1)':'translateY(22px) scale(.65)',pointerEvents:visible?'auto':'none'}}>
+      {/* Pulsing ring */}
+      {visible&&<div className="stt-ring"/>}
+      {/* SVG progress arc */}
+      <svg width="54" height="54" style={{position:'absolute',inset:0,transform:'rotate(-90deg)'}}>
+        <defs>
+          <linearGradient id="sttGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#E91E8C"/>
+            <stop offset="100%" stopColor="#F9A8C9"/>
+          </linearGradient>
+        </defs>
+        {/* Track */}
+        <circle cx="27" cy="27" r={R} fill="none" stroke="rgba(233,30,140,.18)" strokeWidth="2.5"/>
+        {/* Progress */}
+        <circle cx="27" cy="27" r={R} fill="none"
+          stroke="url(#sttGrad)" strokeWidth="2.5" strokeLinecap="round"
+          strokeDasharray={circ} strokeDashoffset={offset}
+          style={{transition:'stroke-dashoffset .14s linear'}}/>
+      </svg>
+      {/* Glass button face */}
+      <div className="stt-inner">
+        <svg className="stt-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none"
+          stroke="white" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="18 15 12 9 6 15"/>
+        </svg>
+      </div>
+    </button>
+  );
+}
+
+function FloatBtns(){
+  const {t}=useContext(Ctx);
+  return(
+    <div className="fb-wrap">
+      <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer" className="fb fb-wa" title="WhatsApp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/905452550104" target="_blank" rel="noopener noreferrer" className="fb fb-book">
+        <span style={{fontSize:'1.1rem'}}>✨</span>
+        {t.hero.cta}
+      </a>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION WAVE DIVIDER
+═══════════════════════════════════════════════ */
+function WaveDivider({flip,bg,fill}){
+  return(
+    <div style={{lineHeight:0,background:bg,overflow:'hidden',transform:flip?'scaleY(-1)':'none'}}>
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style={{display:'block',width:'100%',height:40}} fill={fill||'#FFF5F9'}>
+        <path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
+      </svg>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   APP
+═══════════════════════════════════════════════ */
+function App(){
+  const [lang,setLang]=useState('ru');
+  const t=T[lang];
+  return(
+    <Ctx.Provider value={{lang,setLang,t}}>
+      <div className="aurora" aria-hidden="true">
+        <div className="aurora-a"/>
+        <div className="aurora-b"/>
+        <div className="aurora-c"/>
+        <div className="aurora-d"/>
+        <div className="aurora-e"/>
+      </div>
+      <TopBar/>
+      <Navbar/>
+      <Hero/>
+      <WaveDivider bg="white" fill="#E91E8C"/>
+      <Marquee/>
+      <WaveDivider bg="#E91E8C" fill="#FFF5F9"/>
+      <Services/>
+      <WaveDivider bg="#FFF5F9" fill="white"/>
+      <Reviews/>
+      <WaveDivider bg="white" fill="#FFF5F9"/>
+      <Gallery/>
+      <WaveDivider bg="#FFF5F9" fill="white"/>
+      <About/>
+      <WaveDivider bg="white" fill="#FFF5F9"/>
+      <Contact/>
+      <WaveDivider bg="#FFF5F9" fill="#160810"/>
+      <Footer/>
+      <FloatBtns/>
+      <ScrollTopBtn/>
+    </Ctx.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

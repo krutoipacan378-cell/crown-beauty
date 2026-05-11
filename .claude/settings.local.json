@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Item *)",
+      "PowerShell(Get-Process *)",
+      "WebFetch(domain:www.google.com)",
+      "WebSearch",
+      "WebFetch(domain:crownbeautyantalya.com)",
+      "WebFetch(domain:www.facebook.com)",
+      "WebFetch(domain:tr.top10place.com)",
+      "WebFetch(domain:www.beautynailhairsalons.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "WebFetch(domain:unsplash.com)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\" -Force | ForEach-Object { \"$\\($_.Name\\) [$\\($_.Length\\) bytes]\" })",
+      "PowerShell(Rename-Item *)"
+    ]
+  }
+}
