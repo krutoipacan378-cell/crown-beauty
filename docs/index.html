@@ -480,7 +480,7 @@ const HERO_BG=U('photo-1522337360788-8b13dee7a37e'); // beauty salon interior
 ═══════════════════════════════════════════════ */
 const T={
   ru:{
-    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Открыто сейчас'},
+    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Открыто сейчас',closed:'Закрыто'},
     nav:{home:'Главная',services:'Услуги',reviews:'Отзывы',gallery:'Галерея',about:'О нас',contact:'Контакты'},
     hero:{
       line1:'Ваша красота —',line2:'наша корона',
@@ -560,7 +560,7 @@ const T={
   },
 
   tr:{
-    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Şu an açık'},
+    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Şu an açık',closed:'Kapalı'},
     nav:{home:'Ana Sayfa',services:'Hizmetler',reviews:'Yorumlar',gallery:'Galeri',about:'Hakkımızda',contact:'İletişim'},
     hero:{
       line1:'Güzelliğiniz —',line2:'Bizim Tacımız',
@@ -641,7 +641,7 @@ const T={
   },
 
   en:{
-    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Open now'},
+    topbar:{phone:'0545 255 01 04',hours:'09:00–20:00',open:'Open now',closed:'Closed'},
     nav:{home:'Home',services:'Services',reviews:'Reviews',gallery:'Gallery',about:'About',contact:'Contact'},
     hero:{
       line1:'Your Beauty —',line2:'Our Crown',
@@ -824,6 +824,20 @@ const ClockIcon=()=>(
 function TopBar(){
   const {t,lang,setLang}=useContext(Ctx);
   const opts=[{c:'ru',f:'🇷🇺',l:'RU'},{c:'tr',f:'🇹🇷',l:'TR'},{c:'en',f:'🇬🇧',l:'EN'}];
+  const calcOpen=()=>{
+    const now=new Date();
+    const moscow=new Date(now.toLocaleString("en-US",{timeZone:"Europe/Moscow"}));
+    const day=moscow.getDay();
+    const hour=moscow.getHours();
+    const minute=moscow.getMinutes();
+    const time=hour+minute/60;
+    return day!==0&&time>=10&&time<20;
+  };
+  const [isOpen,setIsOpen]=useState(calcOpen);
+  useEffect(()=>{
+    const id=setInterval(()=>setIsOpen(calcOpen()),60000);
+    return()=>clearInterval(id);
+  },[]);
   return(
     <div className="topbar">
       <div className="topbar-left">
@@ -848,9 +862,15 @@ function TopBar(){
         </span>
         <span className="topbar-pipe topbar-r">|</span>
         {/* Open badge */}
-        <span className="topbar-open topbar-r">
-          <span className="topbar-dot"/>
-          {t.topbar.open}
+        <span className="topbar-open topbar-r" style={{
+          background:isOpen?'rgba(34,197,94,0.15)':'rgba(239,68,68,0.15)',
+          border:`1px solid ${isOpen?'rgba(34,197,94,0.4)':'rgba(239,68,68,0.4)'}`
+        }}>
+          <span className="topbar-dot" style={{
+            background:isOpen?'#22c55e':'#ef4444',
+            boxShadow:isOpen?'0 0 5px rgba(34,197,94,.7)':'0 0 5px rgba(239,68,68,.7)'
+          }}/>
+          {isOpen?t.topbar.open:t.topbar.closed}
         </span>
       </div>
       {/* Language switcher */}
