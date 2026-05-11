@@ -416,6 +416,18 @@ section>div{position:relative;z-index:1}
   color:#fff;border-color:transparent;
   box-shadow:0 0 10px rgba(233,30,140,.5),0 8px 24px rgba(233,30,140,.3)
 }
+.google-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#fff;border:1px solid rgba(249,168,201,.28);
+  border-radius:30px;padding:8px 18px;margin-bottom:16px;
+  box-shadow:0 2px 12px rgba(233,30,140,.07);
+  cursor:pointer;text-decoration:none;
+  transition:box-shadow .22s,filter .22s;
+}
+.google-badge:hover{
+  box-shadow:0 4px 22px rgba(233,30,140,.22);
+  filter:brightness(.94);
+}
 
 /* ── RESPONSIVE ───────────────────────────────── */
 @media(max-width:900px){
@@ -1225,14 +1237,14 @@ function Reviews(){
 
         {/* ── Header ── */}
         <div className="rv" ref={r} style={{textAlign:'center',marginBottom:42}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:9,background:'#fff',border:'1px solid rgba(249,168,201,.28)',borderRadius:30,padding:'8px 18px',marginBottom:16,boxShadow:'0 2px 12px rgba(233,30,140,.07)'}}>
+          <a href="https://www.google.com/maps/place/Crown+Beauty+Salon/@36.87245,30.6372035,17z/data=!3m1!4b1!4m6!3m5!1s0x14c391a25ec40317:0xe7d49477b062d12c!8m2!3d36.8724457!4d30.6397784!16s%2Fg%2F11f_1bdg_5!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="google-badge">
             <GOOGLE_G/>
             <span style={{fontSize:'.9rem',fontWeight:600,color:'#5f6368',letterSpacing:.01}}>Отзывы с Google</span>
             <span style={{color:'#e0e0e0',margin:'0 2px'}}>|</span>
             <span style={{fontFamily:'Playfair Display,serif',fontSize:'1.25rem',fontWeight:700,color:'#2D2D2D',lineHeight:1}}>4.6</span>
             <span style={{color:'#E91E8C',fontSize:'.9rem',letterSpacing:1}}>★★★★★</span>
             <span style={{fontSize:'.75rem',color:'#aaa'}}>230 отзывов</span>
-          </div>
+          </a>
           <div>
             <span style={{fontSize:'.72rem',letterSpacing:'.24em',textTransform:'uppercase',color:'#E91E8C',fontWeight:700}}>✦ Google Reviews ✦</span>
           </div>
