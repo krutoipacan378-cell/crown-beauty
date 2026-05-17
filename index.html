@@ -904,7 +904,7 @@ function Navbar(){
   const [scrollPct,setScrollPct]=useState(0);
   const [open,setOpen]=useState(false);
   const [active,setActive]=useState('hero');
-  const _touchFired=useRef(false);
+  const _lastToggle=useRef(0);
 
   useEffect(()=>{
     const fn=()=>{
@@ -968,8 +968,8 @@ function Navbar(){
 
         {/* Mobile hamburger */}
         <button className="mobbtn"
-          onTouchEnd={e=>{e.preventDefault();_touchFired.current=true;setOpen(o=>!o);}}
-          onClick={()=>{if(_touchFired.current){_touchFired.current=false;return;}setOpen(o=>!o);}}
+          onTouchEnd={e=>{e.preventDefault();const _n=Date.now();if(_n-_lastToggle.current<350)return;_lastToggle.current=_n;setOpen(o=>!o);}}
+          onClick={()=>{const _n=Date.now();if(_n-_lastToggle.current<350)return;_lastToggle.current=_n;setOpen(o=>!o);}}
           aria-label="Menu"
           style={{background:'none',border:'none',cursor:'pointer',display:'none',flexDirection:'column',gap:5,padding:6,marginLeft:8}}>
           {[0,1,2].map(i=>(
