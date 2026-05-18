@@ -464,22 +464,6 @@ section>div{position:relative;z-index:1}
 <script type="text/babel">
 const {useState,useEffect,useRef,useContext,createContext,useCallback,useMemo}=React;
 
-/* ═══════════════════════════════════════════════
-   REAL UNSPLASH GALLERY PHOTOS
-   (confirmed IDs from unsplash.com/s/photos/nail-salon)
-═══════════════════════════════════════════════ */
-const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=82`;
-const GPHOTOS=[
-  U('photo-1604654894610-df63bc536371'), // 0 pink gel manicure
-  U('photo-1632345031435-8727f6897d53'), // 1 nail art close-up
-  U('photo-1610992015762-45dca7fa3a85'), // 2 nail salon service
-  U('photo-1519415510236-718bdfcd89c8'), // 3 pedicure feet
-  U('photo-1610992015836-7c249d75782d'), // 4 spa pedicure
-  U('photo-1619607146034-5a05296c8f9a'), // 5 nail design
-  U('photo-1652869122685-c7792ef56ee2'), // 6 nail art dark
-  U('photo-1599206676335-193c82b13c9e'), // 7 french nails
-  U('photo-1607779097040-26e80aa78e66'), // 8 nail art pastel
-];
 const HERO_BG=U('photo-1522337360788-8b13dee7a37e'); // beauty salon interior
 
 /* ═══════════════════════════════════════════════
@@ -525,14 +509,20 @@ const T={
       tabs:{all:'Все',manicure:'Маникюр',brows:'Брови',lashes:'Реснички'},
       look:'Смотреть',
       items:[
-        {cat:'manicure',label:'Гель-лак',h:240,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
-        {cat:'manicure',label:'Nail Art',h:180,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
-        {cat:'manicure',label:'Наращивание',h:260,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
-        {cat:'manicure',label:'Французский',h:210,g:'linear-gradient(135deg,#F9A8C9 0%,#FCE4EC 100%)'},
-        {cat:'brows',label:'Ламинирование',h:220,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
-        {cat:'brows',label:'Коррекция',h:180,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
-        {cat:'lashes',label:'Наращивание',h:240,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
-        {cat:'lashes',label:'Ламинирование',h:200,g:'linear-gradient(135deg,#9b0e63 0%,#E91E8C 100%)'},
+        {cat:'manicure',src:'images/manicure/manicure-1.jpg',label:'Гель-лак',h:240},
+        {cat:'manicure',src:'images/manicure/manicure-2.jpg',label:'Nail Art',h:220},
+        {cat:'manicure',src:'images/manicure/manicure-3.jpg',label:'Наращивание',h:260},
+        {cat:'manicure',src:'images/manicure/manicure-4.jpg',label:'Французский',h:200},
+        {cat:'manicure',src:'images/manicure/manicure-5.jpg',label:'Дизайн',h:230},
+        {cat:'manicure',src:'images/manicure/manicure-6.jpg',label:'Омбре',h:210},
+        {cat:'brows',src:'images/brows/brows-1.jpg',label:'Ламинирование',h:220},
+        {cat:'brows',src:'images/brows/brows-2.jpg',label:'Коррекция',h:240},
+        {cat:'brows',src:'images/brows/brows-3.jpg',label:'Окрашивание',h:200},
+        {cat:'brows',src:'images/brows/brows-4.jpg',label:'Архитектура',h:230},
+        {cat:'lashes',src:'images/lashes/lashes-1.jpg',label:'Наращивание',h:240},
+        {cat:'lashes',src:'images/lashes/lashes-2.jpg',label:'Ламинирование',h:220},
+        {cat:'lashes',src:'images/lashes/lashes-3.jpg',label:'Классика',h:210},
+        {cat:'lashes',src:'images/lashes/lashes-4.jpg',label:'Объём',h:230},
       ]
     },
     about:{
@@ -605,14 +595,20 @@ const T={
       tabs:{all:'Tümü',manicure:'Manikür',brows:'Kaşlar',lashes:'Kirpikler'},
       look:'Görüntüle',
       items:[
-        {cat:'manicure',label:'Jel Oje',h:240,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
-        {cat:'manicure',label:'Nail Art',h:180,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
-        {cat:'manicure',label:'Uzatma',h:260,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
-        {cat:'manicure',label:'Fransız',h:210,g:'linear-gradient(135deg,#F9A8C9 0%,#FCE4EC 100%)'},
-        {cat:'brows',label:'Kaş Laminasyonu',h:220,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
-        {cat:'brows',label:'Kaş Düzeltme',h:180,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
-        {cat:'lashes',label:'Kirpik Uzatma',h:240,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
-        {cat:'lashes',label:'Kirpik Laminasyon',h:200,g:'linear-gradient(135deg,#9b0e63 0%,#E91E8C 100%)'},
+        {cat:'manicure',src:'images/manicure/manicure-1.jpg',label:'Jel Oje',h:240},
+        {cat:'manicure',src:'images/manicure/manicure-2.jpg',label:'Nail Art',h:220},
+        {cat:'manicure',src:'images/manicure/manicure-3.jpg',label:'Uzatma',h:260},
+        {cat:'manicure',src:'images/manicure/manicure-4.jpg',label:'Fransız',h:200},
+        {cat:'manicure',src:'images/manicure/manicure-5.jpg',label:'Tasarım',h:230},
+        {cat:'manicure',src:'images/manicure/manicure-6.jpg',label:'Ombre',h:210},
+        {cat:'brows',src:'images/brows/brows-1.jpg',label:'Kaş Laminasyonu',h:220},
+        {cat:'brows',src:'images/brows/brows-2.jpg',label:'Kaş Düzeltme',h:240},
+        {cat:'brows',src:'images/brows/brows-3.jpg',label:'Kaş Boyama',h:200},
+        {cat:'brows',src:'images/brows/brows-4.jpg',label:'Kaş Tasarımı',h:230},
+        {cat:'lashes',src:'images/lashes/lashes-1.jpg',label:'Kirpik Uzatma',h:240},
+        {cat:'lashes',src:'images/lashes/lashes-2.jpg',label:'Kirpik Laminasyon',h:220},
+        {cat:'lashes',src:'images/lashes/lashes-3.jpg',label:'Klasik',h:210},
+        {cat:'lashes',src:'images/lashes/lashes-4.jpg',label:'Hacim',h:230},
       ]
     },
     about:{
@@ -684,14 +680,20 @@ const T={
       tabs:{all:'All',manicure:'Manicure',brows:'Brows',lashes:'Lashes'},
       look:'View',
       items:[
-        {cat:'manicure',label:'Gel Polish',h:240,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
-        {cat:'manicure',label:'Nail Art',h:180,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
-        {cat:'manicure',label:'Extensions',h:260,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
-        {cat:'manicure',label:'French',h:210,g:'linear-gradient(135deg,#F9A8C9 0%,#FCE4EC 100%)'},
-        {cat:'brows',label:'Lamination',h:220,g:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)'},
-        {cat:'brows',label:'Correction',h:180,g:'linear-gradient(135deg,#E91E8C 0%,#9b0e63 100%)'},
-        {cat:'lashes',label:'Extensions',h:240,g:'linear-gradient(135deg,#FCE4EC 0%,#F9A8C9 100%)'},
-        {cat:'lashes',label:'Lamination',h:200,g:'linear-gradient(135deg,#9b0e63 0%,#E91E8C 100%)'},
+        {cat:'manicure',src:'images/manicure/manicure-1.jpg',label:'Gel Polish',h:240},
+        {cat:'manicure',src:'images/manicure/manicure-2.jpg',label:'Nail Art',h:220},
+        {cat:'manicure',src:'images/manicure/manicure-3.jpg',label:'Extensions',h:260},
+        {cat:'manicure',src:'images/manicure/manicure-4.jpg',label:'French',h:200},
+        {cat:'manicure',src:'images/manicure/manicure-5.jpg',label:'Design',h:230},
+        {cat:'manicure',src:'images/manicure/manicure-6.jpg',label:'Ombre',h:210},
+        {cat:'brows',src:'images/brows/brows-1.jpg',label:'Lamination',h:220},
+        {cat:'brows',src:'images/brows/brows-2.jpg',label:'Correction',h:240},
+        {cat:'brows',src:'images/brows/brows-3.jpg',label:'Tinting',h:200},
+        {cat:'brows',src:'images/brows/brows-4.jpg',label:'Architecture',h:230},
+        {cat:'lashes',src:'images/lashes/lashes-1.jpg',label:'Extensions',h:240},
+        {cat:'lashes',src:'images/lashes/lashes-2.jpg',label:'Lamination',h:220},
+        {cat:'lashes',src:'images/lashes/lashes-3.jpg',label:'Classic',h:210},
+        {cat:'lashes',src:'images/lashes/lashes-4.jpg',label:'Volume',h:230},
       ]
     },
     about:{
@@ -1395,13 +1397,10 @@ function Gallery(){
           </div>
         </div>
         <div style={{columns:3,columnGap:16}}>
-          {filtered.map((it)=>{
-            const origIdx=t.gallery.items.indexOf(it);
-            const photo=GPHOTOS[origIdx]||GPHOTOS[0];
-            return(
-            <div key={`${filter}-${origIdx}`} className="gcrd" style={{breakInside:'avoid',marginBottom:16,height:it.h}}>
-              <div className="gcrd-inner" style={{background:it.g,height:'100%',width:'100%',position:'relative',overflow:'hidden'}}>
-                <img src={photo} alt={it.label} loading="lazy"
+          {filtered.map((it,i)=>(
+            <div key={`${filter}-${it.src}`} className="gcrd" style={{breakInside:'avoid',marginBottom:16,height:it.h}}>
+              <div className="gcrd-inner" style={{background:'linear-gradient(135deg,#F9A8C9 0%,#E91E8C 100%)',height:'100%',width:'100%',position:'relative',overflow:'hidden'}}>
+                <img src={it.src} alt={it.label} loading="lazy"
                   style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}
                   onError={e=>{e.target.style.display='none';}}/>
                 <span style={{fontSize:48,opacity:.15,position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',pointerEvents:'none',zIndex:1}}>👑</span>
@@ -1411,8 +1410,7 @@ function Gallery(){
                 <span className="look-btn">{t.gallery.look} →</span>
               </div>
             </div>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>
