@@ -14,7 +14,18 @@
       "PowerShell(Test-Path *)",
       "PowerShell(New-Item *)",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\" -Force | ForEach-Object { \"$\\($_.Name\\) [$\\($_.Length\\) bytes]\" })",
-      "PowerShell(Rename-Item *)"
+      "PowerShell(Rename-Item *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git -C \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\" diff)",
+      "Bash(git *)",
+      "Bash(gh api *)",
+      "Bash(fc /b \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\\\\index.html\" \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\\\\docs\\\\index.html\")",
+      "Bash(python *)",
+      "Bash(Copy-Item *)",
+      "PowerShell(Copy-Item *)"
     ]
   }
 }
