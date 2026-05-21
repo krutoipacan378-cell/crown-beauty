@@ -470,8 +470,7 @@ section{overflow-x:hidden}
 
 /* ── GALLERY GRID ─────────────────────────────── */
 .gal-grid{columns:3;column-gap:16px}
-@media(max-width:768px){.gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;columns:unset}.gal-grid .gcrd{margin-bottom:0!important}}
-@media(max-width:480px){.gal-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.gal-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;columns:unset!important}.gal-grid .gcrd{margin-bottom:0!important;width:100%!important}}
 
 /* ── REVIEWS CAROUSEL BOX ─────────────────────── */
 .rvcar-box{overflow:hidden;margin:0 54px;border-radius:4px}
