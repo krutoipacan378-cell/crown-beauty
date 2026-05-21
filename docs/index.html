@@ -454,8 +454,7 @@ section>div{position:relative;z-index:1}
 @media(max-width:768px){
   /* Disable heavy GPU aurora blobs — main cause of scroll lag on mobile */
   .aurora-a,.aurora-b,.aurora-c,.aurora-d,.aurora-e{display:none!important}
-  /* Disable diamond mesh pseudo-elements — saves paint cost per scroll */
-  section::before,section::after{display:none!important}
+
   /* Prevent horizontal reveal animations from causing overflow */
   .rv-l{transform:translateY(32px)!important}
   .rv-l.in{transform:translateY(0)!important}
