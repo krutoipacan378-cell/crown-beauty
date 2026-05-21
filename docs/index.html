@@ -13,8 +13,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:17px}
-body{font-family:'Inter',sans-serif;color:#2D2D2D;overflow-x:hidden;background:#fff;line-height:1.65}
+html{scroll-behavior:smooth;font-size:17px;overflow-x:hidden;max-width:100%}
+body{font-family:'Inter',sans-serif;color:#2D2D2D;overflow-x:hidden;max-width:100%;background:#fff;line-height:1.65}
 h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.15}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#FFF5F9}
@@ -456,7 +456,26 @@ section>div{position:relative;z-index:1}
   .aurora-a,.aurora-b,.aurora-c,.aurora-d,.aurora-e{display:none!important}
   /* Disable diamond mesh pseudo-elements — saves paint cost per scroll */
   section::before,section::after{display:none!important}
+  /* Prevent horizontal reveal animations from causing overflow */
+  .rv-l{transform:translateY(32px)!important}
+  .rv-l.in{transform:translateY(0)!important}
+  .rv-r{transform:translateY(32px)!important}
+  .rv-r.in{transform:translateY(0)!important}
+  /* Shrink carousel side margins */
+  .rvcar-box{margin:0 38px!important}
 }
+
+/* ── OVERFLOW GUARD ───────────────────────────── */
+section{overflow-x:hidden}
+
+/* ── GALLERY GRID ─────────────────────────────── */
+.gal-grid{columns:3;column-gap:16px}
+@media(max-width:768px){.gal-grid{columns:2!important}}
+@media(max-width:480px){.gal-grid{columns:1!important}}
+
+/* ── REVIEWS CAROUSEL BOX ─────────────────────── */
+.rvcar-box{overflow:hidden;margin:0 54px;border-radius:4px}
+@media(max-width:480px){.rvcar-box{margin:0 36px!important}}
 </style>
 </head>
 <body>
@@ -1305,7 +1324,7 @@ function Reviews(){
         {/* ── Carousel ── */}
         <div style={{position:'relative'}} onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>setPaused(false)}>
           <button className="rv-arr" onClick={prev} style={{left:0}} aria-label="Назад">‹</button>
-          <div ref={containerRef} style={{overflow:'hidden',margin:'0 54px',borderRadius:4}}>
+          <div ref={containerRef} className="rvcar-box">
             <div style={{
               display:'flex',
               gap:GAP,
@@ -1396,7 +1415,7 @@ function Gallery(){
             ))}
           </div>
         </div>
-        <div style={{columns:3,columnGap:16}}>
+        <div className="gal-grid">
           {filtered.map((it,i)=>(
             <div key={`${filter}-${it.src}`} className="gcrd" style={{breakInside:'avoid',marginBottom:16}}>
               <div className="gcrd-inner" style={{aspectRatio:'4/3',backgroundColor:'#f0f0f0',width:'100%',position:'relative',overflow:'hidden'}}>
