@@ -25,7 +25,8 @@
       "Bash(fc /b \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\\\\index.html\" \"C:\\\\Users\\\\arbit\\\\Desktop\\\\маниюкур проект\\\\docs\\\\index.html\")",
       "Bash(python *)",
       "Bash(Copy-Item *)",
-      "PowerShell(Copy-Item *)"
+      "PowerShell(Copy-Item *)",
+      "Bash(gh run *)"
     ]
   }
 }
