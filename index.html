@@ -1591,15 +1591,27 @@ function Contact(){
 function Footer(){
   const {t}=useContext(Ctx);
   const yr=new Date().getFullYear();
+  const logoWrap=React.useRef(null);
+  React.useEffect(()=>{
+    const el=logoWrap.current;
+    if(!el) return;
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){el.style.animation='fadeInUp .8s ease forwards';obs.disconnect();}
+    },{threshold:.2});
+    obs.observe(el);
+    return ()=>obs.disconnect();
+  },[]);
   return(
     <footer style={{background:'#160810',color:'white',padding:'60px 24px 28px'}}>
       <div style={{maxWidth:1100,margin:'0 auto'}}>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:40,marginBottom:40}}>
           <div>
             <p style={{fontSize:'.85rem',color:'rgba(255,255,255,.5)',lineHeight:1.75,marginBottom:18}}>{t.footer.tag}</p>
-            <img src="logo.png" alt="Crown Beauty Salon" style={{height:90,width:'auto',objectFit:'contain',display:'block',filter:'brightness(0) invert(1)',opacity:.7}}
-              onError={e=>{e.target.style.display='none';e.target.nextElementSibling.style.display='block'}}/>
-            <div style={{display:'none',fontFamily:"'Playfair Display',serif",fontWeight:700,fontSize:22,color:'rgba(255,255,255,.7)',letterSpacing:'.03em'}}>Crown Beauty Salon</div>
+            <div ref={logoWrap} style={{opacity:0}}>
+              <img src="logo.png" alt="Crown Beauty Salon" style={{height:90,width:'auto',objectFit:'contain',display:'block',filter:'invert(1)',opacity:.7}}
+                onError={e=>{e.target.style.display='none';e.target.nextElementSibling.style.display='block'}}/>
+              <div style={{display:'none',fontFamily:"'Playfair Display',serif",fontWeight:700,fontSize:22,color:'rgba(255,255,255,.7)',letterSpacing:'.03em'}}>Crown Beauty Salon</div>
+            </div>
           </div>
           <div>
             <h4 style={{fontSize:'.85rem',color:'#F9A8C9',marginBottom:14,fontWeight:700,letterSpacing:'.06em',textTransform:'uppercase'}}>Crown Beauty</h4>
