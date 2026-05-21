@@ -462,6 +462,12 @@ section>div{position:relative;z-index:1}
   .rv-r.in{transform:translateY(0)!important}
   /* Shrink carousel side margins */
   .rvcar-box{margin:0 38px!important}
+  /* Hero rating block */
+  .hero-rating{padding:11px 24px!important;gap:10px!important;flex-wrap:wrap;justify-content:center}
+  .hero-rating span:nth-child(3){font-size:.88rem!important}
+  .hero-rating span:nth-child(4){font-size:.82rem!important;letter-spacing:.04em!important}
+  /* "Why choose us" feature card descriptions */
+  .feat-grid p{font-size:.88rem!important;color:#888!important}
 }
 
 /* ── OVERFLOW GUARD ───────────────────────────── */
@@ -1100,7 +1106,7 @@ function Hero(){
 
       <div style={{position:'relative',zIndex:3,maxWidth:820,animation:'fadeInUp 1.6s ease both'}}>
         {/* Rating pill */}
-        <div style={{display:'inline-flex',alignItems:'center',gap:9,background:'rgba(255,255,255,.9)',border:'1px solid rgba(249,168,201,.45)',borderRadius:30,padding:'7px 18px',marginBottom:26,boxShadow:'0 4px 20px rgba(233,30,140,.1)',backdropFilter:'blur(10px)'}}>
+        <div className="hero-rating" style={{display:'inline-flex',alignItems:'center',gap:9,background:'rgba(255,255,255,.9)',border:'1px solid rgba(249,168,201,.45)',borderRadius:30,padding:'7px 18px',marginBottom:26,boxShadow:'0 4px 20px rgba(233,30,140,.1)',backdropFilter:'blur(10px)'}}>
           <span style={{color:'#E91E8C',fontSize:'1rem',letterSpacing:2}}>★★★★★</span>
           <span style={{fontWeight:700,fontSize:'.88rem'}}>4.6</span>
           <span style={{color:'#bbb',fontSize:'.76rem'}}>· {t.hero.rating}</span>
